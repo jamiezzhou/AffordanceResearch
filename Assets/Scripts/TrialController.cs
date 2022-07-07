@@ -16,11 +16,14 @@ public class TrialController : MonoBehaviour
     //public GameObject nextTrialText;
     //private bool startNextTrial = false;
 
+    public int varDanger;
+
     public GameObject dangerousObs;
     public GameObject nondangerousObs;
 
     public TextMeshProUGUI countText;
     public GameObject endExpText;
+    public GameObject pauseMenuUI;
     private int count;
 
     //input eyeHeight of participant before experimentation
@@ -29,13 +32,12 @@ public class TrialController : MonoBehaviour
     private string endPos;
     public float[] heights = new float[7];
 
-    private int dangerousCnt = 21;
-    private int nondangerousCnt = 21;
-    private int totalCnt = 3;
+    private int totalCnt = 6;
 
     // Start is called before the first frame update
     void Start()
     {
+        varDanger = Random.Range(0,2);
         //initialize height array
         eyeHeight = eyeHeight + offset;
         heights[0] = eyeHeight * 0.15f;
@@ -47,8 +49,6 @@ public class TrialController : MonoBehaviour
         heights[6] = eyeHeight * 0.135f;
 
         //begin the first trial walking towards startPos2
-        //nextTrialText.SetActive(startNextTrial);
-
         endPos = "startPos2";
         nextTrial();
 
@@ -65,10 +65,14 @@ public class TrialController : MonoBehaviour
 
     void SetCountText()
     {
+        if (count == (totalCnt + 1)/2) {
+            varDanger = Mathf.Abs(varDanger - 1);
+        }
 
         if (count > totalCnt)
         {
             endExpText.SetActive(true);
+            Time.timeScale = 0f;
             //end game and terminate
         }
         else {
@@ -78,36 +82,33 @@ public class TrialController : MonoBehaviour
 
     void nextTrial() {
         //generate random position of obstacle
-        int varDanger = Random.Range(0, 2);
         int varHeight = Random.Range(1, 7);
-
-        if (dangerousCnt == 0)
-        {
-            varDanger = 0;
-        }
-        if (nondangerousCnt == 0)
-        {
-            varDanger = 1;
-        }
 
         if (varDanger == 1)
         {
-            dangerousCnt--;
             dangerousObs.SetActive(true);
             nondangerousObs.SetActive(false);
             dangerousObs.transform.position = new Vector3(0, heights[varHeight], 0);
         }
         else if (varDanger == 0)
         {
-            nondangerousCnt--;
             nondangerousObs.SetActive(true);
             dangerousObs.SetActive(false);
             nondangerousObs.transform.position = new Vector3(0, heights[varHeight], 0);
         }
 
-        //update trial number on UI
+        //transition between trials
         count++;
         SetCountText();
+        StartCoroutine(WaitNextTrial(1f));
+        //update trial number on UI
+    }
+
+    public IEnumerator WaitNextTrial(float t)
+    {
+        pauseMenuUI.SetActive(true);
+        yield return new WaitForSeconds(t);
+        pauseMenuUI.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
