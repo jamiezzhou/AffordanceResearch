@@ -22,12 +22,12 @@ public class recordData : MonoBehaviour
     void Update()
     {
         //recording the position according to time
-        if (transform.position.x < 0.05f && transform.position.x > -0.05f && trialNum < 42)
+        //Debug.Log(trialNum);
+        if (transform.position.x < 0.01f && transform.position.x > -0.01f && trialNum < 42)
         {
             //Debug.Log("print");
             //Debug.Log(Time.time + ", " + prevTime);
-            File.AppendAllText(fileName, trialNum + "     " + trialController.record[trialNum] + "       " + transform.position.ToString() + "\n");
-            trialNum++;
+            File.AppendAllText(fileName, trialController.count + "     " + trialController.record[trialController.record.Count - 1] + "       " + transform.position.ToString() + "\n");
         }
     }
 

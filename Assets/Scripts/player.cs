@@ -5,26 +5,29 @@ using UnityEngine;
 public class player : MonoBehaviour
 {
 
-    private Vector3 _direction = Vector3.forward;
+    private Vector3 _direction = Vector3.zero;
     public int speed = 1;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
             _direction = Vector3.forward;
         }
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S))
         {
             _direction = Vector3.back;
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
-            _direction = Vector3.right;
+            transform.Rotate(0, 1, 0);
         }
-        else if (Input.GetKeyDown(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A))
         {
-            _direction = Vector3.left;
+            transform.Rotate(0, -1, 0);
+        }
+        else{
+            _direction = Vector3.zero;
         }
 
     }

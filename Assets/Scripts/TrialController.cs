@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
+using Valve.VR;
 
 //things to add:
 //a message noticing next trial (2s)
@@ -24,7 +24,10 @@ public class TrialController : MonoBehaviour
     public TextMeshProUGUI countText;
     public GameObject endExpText;
     public GameObject pauseMenuUI;
-    private int count;
+    public GameObject halfWayUI;
+    public GameObject AffordanceType;
+    public GameObject AffordanceLimit;
+    public int count;
 
     private string endPos;
 
@@ -35,6 +38,8 @@ public class TrialController : MonoBehaviour
     {
         varDanger = Random.Range(0,2);
         calculateHeights();
+
+        pauseMenuUI.SetActive(false);
 
         //begin the first trial walking towards startPos2
         endPos = "startPos2";
@@ -57,6 +62,8 @@ public class TrialController : MonoBehaviour
             varDanger = Mathf.Abs(varDanger - 1);
             //recount and record
             record.Clear();
+            //display half way panel
+            StartCoroutine(WaitNextTrial(5f, halfWayUI));
         }
 
         if (count > totalCnt)
@@ -92,8 +99,24 @@ public class TrialController : MonoBehaviour
         //transition between trials
         count++;
         SetCountText();
-        StartCoroutine(WaitNextTrial(2f));
+        StartCoroutine(WaitNextTrial(2f, pauseMenuUI));
         //update trial number on UI
+    }
+
+    private void UIController() {
+        SetCountText();
+        StartCoroutine(WaitNextTrial(2f, pauseMenuUI));
+
+        AffordanceType.SetActive(true);
+        if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.LeftHand)) {
+            AffordanceType.SetActive(false);
+        }
+
+        AffordanceLimit.SetActive(true);
+        if(buttonCliced){
+            AffordanceLimit.SetActive(false);
+        }
+
     }
 
     //set position of obstacle
@@ -148,11 +171,11 @@ public class TrialController : MonoBehaviour
     }
 
     //pause menu for 2 seconds
-    public IEnumerator WaitNextTrial(float t)
+    public IEnumerator WaitNextTrial(float t, GameObject uiPanel)
     {
-        pauseMenuUI.SetActive(true);
+        uiPanel.SetActive(true);
         yield return new WaitForSeconds(t);
-        pauseMenuUI.SetActive(false);
+        uiPanel.SetActive(false);
     }
 
     //input eyeHeight of participant before experimentation
@@ -215,9 +238,9 @@ public class TrialController : MonoBehaviour
         }
     }
 
-    private void recordData() {
-        if (transform.position.x == 0) {
+    //private void recordData() {
+    //    if (transform.position.x == 0) {
             
-        }
-    }
+    //    }
+    //}
 }
