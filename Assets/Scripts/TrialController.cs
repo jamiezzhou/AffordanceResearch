@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.XR;
+using System.IO;
 
 //things to add:
 //a message noticing next trial (2s)
@@ -16,6 +17,9 @@ public class TrialController : MonoBehaviour
     //public GameObject nextTrialText;
     //private bool startNextTrial = false;
 
+    //recording variables
+    private string fileName;
+
     public int varDanger;
 
     public GameObject dangerousObs;
@@ -27,12 +31,14 @@ public class TrialController : MonoBehaviour
     public GameObject halfWayUI;
     public GameObject AffordanceType;
     public GameObject AffordanceLimit;
-    public int count;
+    public GameOjbect StartMenu;
 
     private string endPos;
 
+    public int count;
     private int totalCnt = 6;
 
+    //variables for controlling controller
     private InputDevice targetDevice;
 
     // Start is called before the first frame update
@@ -42,7 +48,6 @@ public class TrialController : MonoBehaviour
         List<InputDevice> devices = new List<InputDevice>();
         InputDeviceCharacteristics rightControllerCharacteristics = InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller;
         InputDevices.GetDevicesWithCharacteristics(rightControllerCharacteristics, devices);
-
         if (devices.Count > 0) {
             targetDevice = devices[0];
         }
@@ -60,12 +65,24 @@ public class TrialController : MonoBehaviour
         count = 0;
         SetCountText();
         endExpText.SetActive(false);
+
+
+        //initiate recording devices
+        Directory.CreateDirectory(Application.streamingAssetsPath + "/Data_Logs/");
+        CreateTextFile();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        //recording the position according to time
+        //Debug.Log(trialNum);
+        if (transform.position.x < 0.01f && transform.position.x > -0.01f && count < totalCnt)
+        {
+            //Debug.Log("print");
+            //Debug.Log(Time.time + ", " + prevTime);
+            File.AppendAllText(fileName, count + "     " + record[record.Count - 1] + "       " + transform.position.ToString() + "\n");
+        }
     }
 
     void SetCountText()
@@ -75,17 +92,18 @@ public class TrialController : MonoBehaviour
             //recount and record
             record.Clear();
             //display half way panel
-            StartCoroutine(WaitNextTrial(5f, halfWayUI));
+            StartCoroutine(WaitNextTrial(8f, halfWayUI));
         }
 
         if (count > totalCnt)
         {
+            //pauseMenuUI.SetActive(false);
             endExpText.SetActive(true);
             Time.timeScale = 0f;
             //end game and terminate
         }
         else {
-            countText.text = "Trial: " + count.ToString() + "/" + totalCnt;
+            countText.text = "Trial: " + (count+1).ToString() + "/" + totalCnt;
         }
     }
 
@@ -110,26 +128,29 @@ public class TrialController : MonoBehaviour
 
         //transition between trials
         count++;
-        SetCountText();
-        StartCoroutine(WaitNextTrial(2f, pauseMenuUI));
+        //SetCountText();
+        //StartCoroutine(WaitNextTrial(2f, pauseMenuUI));
+        UIController();
         //update trial number on UI
     }
 
     private void UIController() {
         SetCountText();
-        StartCoroutine(WaitNextTrial(2f, pauseMenuUI));
+        if (count != 0 && count != totalCnt)
+        {
+            StartCoroutine(WaitNextTrial(2f, pauseMenuUI));
+        }
 
         AffordanceType.SetActive(true);
         if (targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue) && primaryButtonValue) {
             Debug.Log("PrimaryButton pressed");
             AffordanceType.SetActive(false);
-        }
-
-        AffordanceLimit.SetActive(true);
-        if (targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool secondaryButtonValue) && secondaryButtonValue)
-        {
-            Debug.Log("SecondaryButton pressed");
-            AffordanceLimit.SetActive(false);
+            AffordanceLimit.SetActive(true);
+            if (targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool secondaryButtonValue) && secondaryButtonValue)
+            {
+                Debug.Log("SecondaryButton pressed");
+                AffordanceLimit.SetActive(false);
+            }
         }
 
     }
@@ -253,9 +274,14 @@ public class TrialController : MonoBehaviour
         }
     }
 
-    //private void recordData() {
-    //    if (transform.position.x == 0) {
-            
-    //    }
-    //}
+    //create file for recording
+    public void CreateTextFile()
+    {
+        fileName = Application.streamingAssetsPath + "/Data_Logs/" + "Participant1" + ".txt";
+
+        if (!File.Exists(fileName))
+        {
+            File.WriteAllText(fileName, "Participant 1 Log:" + "\n");
+        }
+    }
 }
