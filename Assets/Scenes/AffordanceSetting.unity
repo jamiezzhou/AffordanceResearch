@@ -2459,7 +2459,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &666038002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2509,12 +2509,14 @@ MonoBehaviour:
   nondangerousObs: {fileID: 66976171}
   countText: {fileID: 1733894948}
   endExpText: {fileID: 466558583}
-  pauseMenuUI: {fileID: 466558583}
-  halfWayUI: {fileID: 0}
+  pauseMenuUI: {fileID: 1137082825}
+  halfWayUI: {fileID: 2147413141}
+  AffordanceType: {fileID: 1246758517}
+  AffordanceLimit: {fileID: 937114392}
   count: 0
   record: []
   eyeHeight: 1.5
-  offset: 0
+  offset: 0.15
   heightsHead:
   - 0
   - 0
@@ -2602,7 +2604,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &727891780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2709,7 +2711,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 108667733}
+  m_Camera: {fileID: 618160182}
   m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -3306,7 +3308,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -22.8, y: 18.3}
+  m_AnchoredPosition: {x: -22.800018, y: 18.300003}
   m_SizeDelta: {x: -496.09772, y: -240.86307}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &937114394
@@ -4332,7 +4334,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -22.8, y: 18.3}
+  m_AnchoredPosition: {x: -22.800018, y: 18.300003}
   m_SizeDelta: {x: -496.09772, y: -240.86307}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1246758519
@@ -4559,7 +4561,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1663d8d056f4a49aca944a0a6139feb5,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1663d8d056f4a49aca944a0a6139feb5, type: 3}
@@ -6009,6 +6011,8 @@ MonoBehaviour:
   endExpText: {fileID: 466558583}
   pauseMenuUI: {fileID: 1137082825}
   halfWayUI: {fileID: 2147413141}
+  AffordanceType: {fileID: 0}
+  AffordanceLimit: {fileID: 0}
   count: 0
   record: []
   eyeHeight: 1.5

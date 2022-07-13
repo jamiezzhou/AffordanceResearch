@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Valve.VR;
+using UnityEngine.XR;
 
 //things to add:
 //a message noticing next trial (2s)
@@ -33,27 +33,39 @@ public class TrialController : MonoBehaviour
 
     private int totalCnt = 6;
 
+    private InputDevice targetDevice;
+
     // Start is called before the first frame update
     void Start()
     {
+        //import all the controllers
+        List<InputDevice> devices = new List<InputDevice>();
+        InputDeviceCharacteristics rightControllerCharacteristics = InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller;
+        InputDevices.GetDevicesWithCharacteristics(rightControllerCharacteristics, devices);
+
+        if (devices.Count > 0) {
+            targetDevice = devices[0];
+        }
+
+        //set the condition and heights
         varDanger = Random.Range(0,2);
         calculateHeights();
-
-        pauseMenuUI.SetActive(false);
 
         //begin the first trial walking towards startPos2
         endPos = "startPos2";
         nextTrial();
 
+        //initiate menus and text
+        pauseMenuUI.SetActive(false);
         count = 0;
         SetCountText();
-
         endExpText.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+
     }
 
     void SetCountText()
@@ -108,12 +120,15 @@ public class TrialController : MonoBehaviour
         StartCoroutine(WaitNextTrial(2f, pauseMenuUI));
 
         AffordanceType.SetActive(true);
-        if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.LeftHand)) {
+        if (targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue) && primaryButtonValue) {
+            Debug.Log("PrimaryButton pressed");
             AffordanceType.SetActive(false);
         }
 
         AffordanceLimit.SetActive(true);
-        if(buttonCliced){
+        if (targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool secondaryButtonValue) && secondaryButtonValue)
+        {
+            Debug.Log("SecondaryButton pressed");
             AffordanceLimit.SetActive(false);
         }
 
