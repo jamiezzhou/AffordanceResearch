@@ -93,7 +93,7 @@ public class TrialController : MonoBehaviour
 
     void SetCountText()
     {
-        if (count == (totalCnt)/2 + 1) {
+        if (count == (totalCnt + 1)/2) {
             varDanger = Mathf.Abs(varDanger - 1);
             //recount and record
             record.Clear();
