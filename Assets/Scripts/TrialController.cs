@@ -152,17 +152,18 @@ public class TrialController : MonoBehaviour
             StartCoroutine(WaitNextTrialPause(2f));
         }
 
-        //AffordanceType.SetActive(true);
-        //if (targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue) && primaryButtonValue) {
-        //    Debug.Log("PrimaryButton pressed");
-        //    AffordanceType.SetActive(false);
-        //    AffordanceLimit.SetActive(true);
-        //    if (targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool secondaryButtonValue) && secondaryButtonValue)
-        //    {
-        //        Debug.Log("SecondaryButton pressed");
-        //        AffordanceLimit.SetActive(false);
-        //    }
-        //}
+        AffordanceType.SetActive(true);
+        if (targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue) && primaryButtonValue)
+        {
+            Debug.Log("PrimaryButton pressed");
+            AffordanceType.SetActive(false);
+            AffordanceLimit.SetActive(true);
+            if (targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool secondaryButtonValue) && secondaryButtonValue)
+            {
+                Debug.Log("SecondaryButton pressed");
+                AffordanceLimit.SetActive(false);
+            }
+        }
 
     }
 

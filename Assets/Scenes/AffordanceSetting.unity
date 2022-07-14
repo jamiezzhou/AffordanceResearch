@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.120775014, g: 0.18656157, b: 0.33527216, a: 1}
+  m_IndirectSpecularColor: {r: 0.12080304, g: 0.1865421, b: 0.33513367, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -3200,6 +3200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 830d5b89eb9b646438fbcc49fb186c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 2
 --- !u!4 &909679866 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 8fd30602a504aa944a539dd3309341e0,
@@ -3310,7 +3311,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -22.800034, y: 18.300003}
+  m_AnchoredPosition: {x: -22.800049, y: 18.300003}
   m_SizeDelta: {x: -496.09772, y: -240.86307}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &937114394
@@ -4318,7 +4319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1246758518
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4336,7 +4337,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -22.800034, y: 18.300003}
+  m_AnchoredPosition: {x: -22.800049, y: 18.300003}
   m_SizeDelta: {x: -496.09772, y: -240.86307}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1246758519
@@ -5463,7 +5464,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1666525649
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6081,7 +6082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5fb0355a6a62432b94e8679baf0434c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  varDanger: 0
+  varDanger: 1
   dangerousObs: {fileID: 909330539}
   nondangerousObs: {fileID: 66976171}
   countText: {fileID: 1733894948}
