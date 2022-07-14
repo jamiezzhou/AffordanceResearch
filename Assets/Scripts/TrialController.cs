@@ -75,15 +75,18 @@ public class TrialController : MonoBehaviour
         CreateTextFile();
     }
 
+
     // Update is called once per frame
     void Update()
     {
         //recording the position according to time
         //Debug.Log(trialNum);
-        if (transform.position.x < 0.01f && transform.position.x > -0.01f && count < totalCnt)
+       
+        if (transform.position.x < 0.01f && transform.position.x > -0.01f && nextTrialStart)
         {
             //Debug.Log("print");
             //Debug.Log(Time.time + ", " + prevTime);
+            nextTrialStart = false;
             File.AppendAllText(fileName, count + "     " + record[record.Count - 1] + "       " + transform.position.ToString() + "\n");
         }
     }
@@ -112,8 +115,10 @@ public class TrialController : MonoBehaviour
 
 
     public List<string> record = new List<string>(21);
+    private bool nextTrialStart = false;
     void nextTrial() {
         //generate random position of obstacle, make sure each position is only generated once
+
         int varType = Random.Range(0, 3);
         int varHeight = Random.Range(0, 7);
         string newCombo = varType + "," + varHeight;
@@ -135,6 +140,8 @@ public class TrialController : MonoBehaviour
         //StartCoroutine(WaitNextTrial(2f, pauseMenuUI));
         UIController();
         //update trial number on UI
+
+        nextTrialStart = true;
     }
 
     private void UIController() {
