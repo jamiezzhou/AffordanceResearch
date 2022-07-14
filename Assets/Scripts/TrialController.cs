@@ -31,7 +31,7 @@ public class TrialController : MonoBehaviour
     public GameObject halfWayUI;
     public GameObject AffordanceType;
     public GameObject AffordanceLimit;
-    public GameOjbect StartMenu;
+    public GameObject startMenuUI;
 
     private string endPos;
 
@@ -44,6 +44,9 @@ public class TrialController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //change to start game after clicking primary button
+        StartCoroutine(WaitNextTrial(10f, startMenuUI));
+
         //import all the controllers
         List<InputDevice> devices = new List<InputDevice>();
         InputDeviceCharacteristics rightControllerCharacteristics = InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller;
@@ -87,7 +90,7 @@ public class TrialController : MonoBehaviour
 
     void SetCountText()
     {
-        if (count == (totalCnt + 1)/2) {
+        if (count == (totalCnt)/2 + 1) {
             varDanger = Mathf.Abs(varDanger - 1);
             //recount and record
             record.Clear();
@@ -103,7 +106,7 @@ public class TrialController : MonoBehaviour
             //end game and terminate
         }
         else {
-            countText.text = "Trial: " + (count+1).ToString() + "/" + totalCnt;
+            countText.text = "Trial: " + (count).ToString() + "/" + totalCnt;
         }
     }
 
@@ -135,23 +138,41 @@ public class TrialController : MonoBehaviour
     }
 
     private void UIController() {
+
         SetCountText();
-        if (count != 0 && count != totalCnt)
+        if (count != 0 && count != totalCnt+1)
         {
-            StartCoroutine(WaitNextTrial(2f, pauseMenuUI));
+            StartCoroutine(WaitNextTrialPause(2f));
         }
 
+        //AffordanceType.SetActive(true);
+        //if (targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue) && primaryButtonValue) {
+        //    Debug.Log("PrimaryButton pressed");
+        //    AffordanceType.SetActive(false);
+        //    AffordanceLimit.SetActive(true);
+        //    if (targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool secondaryButtonValue) && secondaryButtonValue)
+        //    {
+        //        Debug.Log("SecondaryButton pressed");
+        //        AffordanceLimit.SetActive(false);
+        //    }
+        //}
+
+    }
+
+    //temp code!!! obsolete when trigger is manufunctured
+    public IEnumerator WaitNextTrialPause(float t)
+    {
+        pauseMenuUI.SetActive(true);
+        yield return new WaitForSeconds(t);
+        pauseMenuUI.SetActive(false);
+        StartCoroutine(WaitNextTrialType(3f));
+    }
+    public IEnumerator WaitNextTrialType(float t)
+    {
         AffordanceType.SetActive(true);
-        if (targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue) && primaryButtonValue) {
-            Debug.Log("PrimaryButton pressed");
-            AffordanceType.SetActive(false);
-            AffordanceLimit.SetActive(true);
-            if (targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool secondaryButtonValue) && secondaryButtonValue)
-            {
-                Debug.Log("SecondaryButton pressed");
-                AffordanceLimit.SetActive(false);
-            }
-        }
+        yield return new WaitForSeconds(t);
+        AffordanceType.SetActive(false);
+        StartCoroutine(WaitNextTrial(3f, AffordanceLimit));
 
     }
 

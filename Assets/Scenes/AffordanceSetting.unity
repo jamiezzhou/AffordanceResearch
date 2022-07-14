@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12080304, g: 0.1865421, b: 0.33513367, a: 1}
+  m_IndirectSpecularColor: {r: 0.120775014, g: 0.18656157, b: 0.33527216, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -2459,7 +2459,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &666038002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2513,6 +2513,7 @@ MonoBehaviour:
   halfWayUI: {fileID: 2147413141}
   AffordanceType: {fileID: 1246758517}
   AffordanceLimit: {fileID: 937114392}
+  startMenuUI: {fileID: 1666525648}
   count: 0
   record: []
   eyeHeight: 1.5
@@ -2604,7 +2605,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &727891780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2711,7 +2712,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 618160182}
+  m_Camera: {fileID: 108667733}
   m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -3309,7 +3310,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -22.800034, y: 18.300003}
+  m_AnchoredPosition: {x: -22.800049, y: 18.300003}
   m_SizeDelta: {x: -496.09772, y: -240.86307}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &937114394
@@ -4335,7 +4336,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -22.800034, y: 18.300003}
+  m_AnchoredPosition: {x: -22.800049, y: 18.300003}
   m_SizeDelta: {x: -496.09772, y: -240.86307}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1246758519
@@ -4562,7 +4563,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1663d8d056f4a49aca944a0a6139feb5,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1663d8d056f4a49aca944a0a6139feb5, type: 3}
@@ -6087,8 +6088,9 @@ MonoBehaviour:
   endExpText: {fileID: 466558583}
   pauseMenuUI: {fileID: 1137082825}
   halfWayUI: {fileID: 2147413141}
-  AffordanceType: {fileID: 0}
-  AffordanceLimit: {fileID: 0}
+  AffordanceType: {fileID: 1246758517}
+  AffordanceLimit: {fileID: 937114392}
+  startMenuUI: {fileID: 1666525648}
   count: 0
   record: []
   eyeHeight: 1.5
@@ -6457,7 +6459,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11, y: 94}
+  m_AnchoredPosition: {x: 55, y: 74}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2080626991
@@ -6479,10 +6481,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "In this experiment, you will be ducking under or stepping over an obstacle
-    in the middle of you path. \nYou will answer 2 questions about how you expect
-    you will pass this obstacle. Then you will carry out your plans. There are a
-    total of 42 trials.\n \nPress the Trigger to start the experiment."
+  m_text: "- In this experiment, you will be ducking under or stepping over an obstacle
+    in the middle of your path. \n- For each trial, you will answer 2 questions about
+    how you expect you will pass this obstacle. Then you will carry out your plans.
+    \n- There are a total of 42 trials.\n \nPress the TRIGGER to start the experiment."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6516,7 +6518,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -6545,7 +6547,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -243.62735, y: 0, z: -261.69226, w: 0}
+  m_margin: {x: -243.62735, y: 0, z: -136.25757, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
