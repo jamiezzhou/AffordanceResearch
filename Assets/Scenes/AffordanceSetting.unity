@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 5468db95168ea4bc7b1a9e491e979a35,
+    type: 2}
   m_UseShadowmask: 0
 --- !u!196 &5
 NavMeshSettings:
@@ -929,33 +930,38 @@ MonoBehaviour:
     spine:
       bones: []
       headTarget: {fileID: 0}
-      pelvisTarget: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
+      headClampWeight: 0.6
+      minHeadHeight: 0.8
+      useAnimatedHeadHeightWeight: 0
+      useAnimatedHeadHeightRange: 0.1
+      animatedHeadHeightBlend: 0.3
+      pelvisTarget: {fileID: 0}
       pelvisPositionWeight: 0
       pelvisRotationWeight: 0
+      maintainPelvisPosition: 0.2
       chestGoal: {fileID: 0}
       chestGoalWeight: 0
-      minHeadHeight: 0.8
+      chestClampWeight: 0.5
+      rotateChestByHands: 1
       bodyPosStiffness: 0.55
       bodyRotStiffness: 0.1
       neckStiffness: 0.2
-      rotateChestByHands: 1
-      chestClampWeight: 0.5
-      headClampWeight: 0.6
       moveBodyBackWhenCrouching: 0.5
-      maintainPelvisPosition: 0.2
       maxRootAngle: 25
       rootHeadingOffset: 0
     leftArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: -1, y: -0, z: -0}
@@ -970,12 +976,14 @@ MonoBehaviour:
     rightArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: -1, y: -0, z: -0}
@@ -990,9 +998,9 @@ MonoBehaviour:
     leftLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -1007,9 +1015,9 @@ MonoBehaviour:
     rightLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -1022,7 +1030,23 @@ MonoBehaviour:
         m_RotationOrder: 4
       useAnimatedBendNormal: 0
     locomotion:
+      mode: 0
       weight: 1
+      moveThreshold: 0.3
+      animationHeader: 0
+      minAnimationSpeed: 0.2
+      maxAnimationSpeed: 3
+      animationSmoothTime: 0.1
+      rootPositionHeader: 0
+      standOffset: {x: 0, y: 0}
+      rootLerpSpeedWhileMoving: 30
+      rootLerpSpeedWhileStopping: 10
+      rootLerpSpeedWhileTurning: 10
+      maxRootOffset: 0.5
+      rootRotationHeader: 0
+      maxRootAngleMoving: 10
+      maxRootAngleStanding: 90
+      stepLengthMlp: 1
       footDistance: 0.3
       stepThreshold: 0.4
       angleThreshold: 60
@@ -2330,7 +2354,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4513e09e0185b9749bc91a9d562d73ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  C_key_pressed: 0
   ik: {fileID: 0}
   settings:
     scaleMlp: 1
@@ -2390,6 +2413,7 @@ MonoBehaviour:
     pelvisTargetRight: {x: 0, y: 0, z: 0}
     pelvisPositionWeight: 0
     pelvisRotationWeight: 0
+  C_key_pressed: 0
   TriggerActivationButton: 2
   activationThresold: 0.1
   LeftController: {fileID: 960046602}
@@ -2987,33 +3011,38 @@ MonoBehaviour:
     spine:
       bones: []
       headTarget: {fileID: 0}
-      pelvisTarget: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
+      headClampWeight: 0.6
+      minHeadHeight: 0.8
+      useAnimatedHeadHeightWeight: 0
+      useAnimatedHeadHeightRange: 0.1
+      animatedHeadHeightBlend: 0.3
+      pelvisTarget: {fileID: 0}
       pelvisPositionWeight: 0
       pelvisRotationWeight: 0
+      maintainPelvisPosition: 0.2
       chestGoal: {fileID: 0}
       chestGoalWeight: 0
-      minHeadHeight: 0.8
+      chestClampWeight: 0.5
+      rotateChestByHands: 1
       bodyPosStiffness: 0.55
       bodyRotStiffness: 0.1
       neckStiffness: 0.2
-      rotateChestByHands: 1
-      chestClampWeight: 0.5
-      headClampWeight: 0.6
       moveBodyBackWhenCrouching: 0.5
-      maintainPelvisPosition: 0.2
       maxRootAngle: 25
       rootHeadingOffset: 0
     leftArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: 0, y: 1, z: 0}
@@ -3028,12 +3057,14 @@ MonoBehaviour:
     rightArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: 0, y: 1, z: 0}
@@ -3048,9 +3079,9 @@ MonoBehaviour:
     leftLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -3065,9 +3096,9 @@ MonoBehaviour:
     rightLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -3080,7 +3111,23 @@ MonoBehaviour:
         m_RotationOrder: 4
       useAnimatedBendNormal: 0
     locomotion:
+      mode: 0
       weight: 1
+      moveThreshold: 0.3
+      animationHeader: 0
+      minAnimationSpeed: 0.2
+      maxAnimationSpeed: 3
+      animationSmoothTime: 0.1
+      rootPositionHeader: 0
+      standOffset: {x: 0, y: 0}
+      rootLerpSpeedWhileMoving: 30
+      rootLerpSpeedWhileStopping: 10
+      rootLerpSpeedWhileTurning: 10
+      maxRootOffset: 0.5
+      rootRotationHeader: 0
+      maxRootAngleMoving: 10
+      maxRootAngleStanding: 90
+      stepLengthMlp: 1
       footDistance: 0.3
       stepThreshold: 0.4
       angleThreshold: 60
@@ -4185,33 +4232,38 @@ MonoBehaviour:
     spine:
       bones: []
       headTarget: {fileID: 0}
-      pelvisTarget: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
+      headClampWeight: 0.6
+      minHeadHeight: 0.8
+      useAnimatedHeadHeightWeight: 0
+      useAnimatedHeadHeightRange: 0.1
+      animatedHeadHeightBlend: 0.3
+      pelvisTarget: {fileID: 0}
       pelvisPositionWeight: 0
       pelvisRotationWeight: 0
+      maintainPelvisPosition: 0.2
       chestGoal: {fileID: 0}
       chestGoalWeight: 0
-      minHeadHeight: 0.8
+      chestClampWeight: 0.5
+      rotateChestByHands: 1
       bodyPosStiffness: 0.55
       bodyRotStiffness: 0.1
       neckStiffness: 0.2
-      rotateChestByHands: 1
-      chestClampWeight: 0.5
-      headClampWeight: 0.6
       moveBodyBackWhenCrouching: 0.5
-      maintainPelvisPosition: 0.2
       maxRootAngle: 25
       rootHeadingOffset: 0
     leftArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: 0, y: 1, z: 0}
@@ -4226,12 +4278,14 @@ MonoBehaviour:
     rightArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: 0, y: 1, z: 0}
@@ -4246,9 +4300,9 @@ MonoBehaviour:
     leftLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -4263,9 +4317,9 @@ MonoBehaviour:
     rightLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -4278,7 +4332,23 @@ MonoBehaviour:
         m_RotationOrder: 4
       useAnimatedBendNormal: 0
     locomotion:
+      mode: 0
       weight: 1
+      moveThreshold: 0.3
+      animationHeader: 0
+      minAnimationSpeed: 0.2
+      maxAnimationSpeed: 3
+      animationSmoothTime: 0.1
+      rootPositionHeader: 0
+      standOffset: {x: 0, y: 0}
+      rootLerpSpeedWhileMoving: 30
+      rootLerpSpeedWhileStopping: 10
+      rootLerpSpeedWhileTurning: 10
+      maxRootOffset: 0.5
+      rootRotationHeader: 0
+      maxRootAngleMoving: 10
+      maxRootAngleStanding: 90
+      stepLengthMlp: 1
       footDistance: 0.3
       stepThreshold: 0.4
       angleThreshold: 60
@@ -4886,33 +4956,38 @@ MonoBehaviour:
     spine:
       bones: []
       headTarget: {fileID: 0}
-      pelvisTarget: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
+      headClampWeight: 0.6
+      minHeadHeight: 0.8
+      useAnimatedHeadHeightWeight: 0
+      useAnimatedHeadHeightRange: 0.1
+      animatedHeadHeightBlend: 0.3
+      pelvisTarget: {fileID: 0}
       pelvisPositionWeight: 0
       pelvisRotationWeight: 0
+      maintainPelvisPosition: 0.2
       chestGoal: {fileID: 0}
       chestGoalWeight: 0
-      minHeadHeight: 0.8
+      chestClampWeight: 0.5
+      rotateChestByHands: 1
       bodyPosStiffness: 0.55
       bodyRotStiffness: 0.1
       neckStiffness: 0.2
-      rotateChestByHands: 1
-      chestClampWeight: 0.5
-      headClampWeight: 0.6
       moveBodyBackWhenCrouching: 0.5
-      maintainPelvisPosition: 0.2
       maxRootAngle: 25
       rootHeadingOffset: 0
     leftArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: -1, y: -0, z: -0}
@@ -4927,12 +5002,14 @@ MonoBehaviour:
     rightArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: -1, y: -0, z: -0}
@@ -4947,9 +5024,9 @@ MonoBehaviour:
     leftLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -4964,9 +5041,9 @@ MonoBehaviour:
     rightLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -4979,7 +5056,23 @@ MonoBehaviour:
         m_RotationOrder: 4
       useAnimatedBendNormal: 0
     locomotion:
+      mode: 0
       weight: 1
+      moveThreshold: 0.3
+      animationHeader: 0
+      minAnimationSpeed: 0.2
+      maxAnimationSpeed: 3
+      animationSmoothTime: 0.1
+      rootPositionHeader: 0
+      standOffset: {x: 0, y: 0}
+      rootLerpSpeedWhileMoving: 30
+      rootLerpSpeedWhileStopping: 10
+      rootLerpSpeedWhileTurning: 10
+      maxRootOffset: 0.5
+      rootRotationHeader: 0
+      maxRootAngleMoving: 10
+      maxRootAngleStanding: 90
+      stepLengthMlp: 1
       footDistance: 0.3
       stepThreshold: 0.4
       angleThreshold: 60
@@ -5876,33 +5969,38 @@ MonoBehaviour:
     spine:
       bones: []
       headTarget: {fileID: 0}
-      pelvisTarget: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
+      headClampWeight: 0.6
+      minHeadHeight: 0.8
+      useAnimatedHeadHeightWeight: 0
+      useAnimatedHeadHeightRange: 0.1
+      animatedHeadHeightBlend: 0.3
+      pelvisTarget: {fileID: 0}
       pelvisPositionWeight: 0
       pelvisRotationWeight: 0
+      maintainPelvisPosition: 0.2
       chestGoal: {fileID: 0}
       chestGoalWeight: 0
-      minHeadHeight: 0.8
+      chestClampWeight: 0.5
+      rotateChestByHands: 1
       bodyPosStiffness: 0.55
       bodyRotStiffness: 0.1
       neckStiffness: 0.2
-      rotateChestByHands: 1
-      chestClampWeight: 0.5
-      headClampWeight: 0.6
       moveBodyBackWhenCrouching: 0.5
-      maintainPelvisPosition: 0.2
       maxRootAngle: 25
       rootHeadingOffset: 0
     leftArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: -1, y: -0, z: -0}
@@ -5917,12 +6015,14 @@ MonoBehaviour:
     rightArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: -1, y: -0, z: -0}
@@ -5937,9 +6037,9 @@ MonoBehaviour:
     leftLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -5954,9 +6054,9 @@ MonoBehaviour:
     rightLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -5969,7 +6069,23 @@ MonoBehaviour:
         m_RotationOrder: 4
       useAnimatedBendNormal: 0
     locomotion:
+      mode: 0
       weight: 1
+      moveThreshold: 0.3
+      animationHeader: 0
+      minAnimationSpeed: 0.2
+      maxAnimationSpeed: 3
+      animationSmoothTime: 0.1
+      rootPositionHeader: 0
+      standOffset: {x: 0, y: 0}
+      rootLerpSpeedWhileMoving: 30
+      rootLerpSpeedWhileStopping: 10
+      rootLerpSpeedWhileTurning: 10
+      maxRootOffset: 0.5
+      rootRotationHeader: 0
+      maxRootAngleMoving: 10
+      maxRootAngleStanding: 90
+      stepLengthMlp: 1
       footDistance: 0.3
       stepThreshold: 0.4
       angleThreshold: 60
@@ -6327,33 +6443,38 @@ MonoBehaviour:
     spine:
       bones: []
       headTarget: {fileID: 0}
-      pelvisTarget: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
+      headClampWeight: 0.6
+      minHeadHeight: 0.8
+      useAnimatedHeadHeightWeight: 0
+      useAnimatedHeadHeightRange: 0.1
+      animatedHeadHeightBlend: 0.3
+      pelvisTarget: {fileID: 0}
       pelvisPositionWeight: 0
       pelvisRotationWeight: 0
+      maintainPelvisPosition: 0.2
       chestGoal: {fileID: 0}
       chestGoalWeight: 0
-      minHeadHeight: 0.8
+      chestClampWeight: 0.5
+      rotateChestByHands: 1
       bodyPosStiffness: 0.55
       bodyRotStiffness: 0.1
       neckStiffness: 0.2
-      rotateChestByHands: 1
-      chestClampWeight: 0.5
-      headClampWeight: 0.6
       moveBodyBackWhenCrouching: 0.5
-      maintainPelvisPosition: 0.2
       maxRootAngle: 25
       rootHeadingOffset: 0
     leftArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: -1, y: -0, z: -0}
@@ -6368,12 +6489,14 @@ MonoBehaviour:
     rightArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: -1, y: -0, z: -0}
@@ -6388,9 +6511,9 @@ MonoBehaviour:
     leftLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -6405,9 +6528,9 @@ MonoBehaviour:
     rightLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -6420,7 +6543,23 @@ MonoBehaviour:
         m_RotationOrder: 4
       useAnimatedBendNormal: 0
     locomotion:
+      mode: 0
       weight: 1
+      moveThreshold: 0.3
+      animationHeader: 0
+      minAnimationSpeed: 0.2
+      maxAnimationSpeed: 3
+      animationSmoothTime: 0.1
+      rootPositionHeader: 0
+      standOffset: {x: 0, y: 0}
+      rootLerpSpeedWhileMoving: 30
+      rootLerpSpeedWhileStopping: 10
+      rootLerpSpeedWhileTurning: 10
+      maxRootOffset: 0.5
+      rootRotationHeader: 0
+      maxRootAngleMoving: 10
+      maxRootAngleStanding: 90
+      stepLengthMlp: 1
       footDistance: 0.3
       stepThreshold: 0.4
       angleThreshold: 60
@@ -7063,33 +7202,38 @@ MonoBehaviour:
     spine:
       bones: []
       headTarget: {fileID: 0}
-      pelvisTarget: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
+      headClampWeight: 0.6
+      minHeadHeight: 0.8
+      useAnimatedHeadHeightWeight: 0
+      useAnimatedHeadHeightRange: 0.1
+      animatedHeadHeightBlend: 0.3
+      pelvisTarget: {fileID: 0}
       pelvisPositionWeight: 0
       pelvisRotationWeight: 0
+      maintainPelvisPosition: 0.2
       chestGoal: {fileID: 0}
       chestGoalWeight: 0
-      minHeadHeight: 0.8
+      chestClampWeight: 0.5
+      rotateChestByHands: 1
       bodyPosStiffness: 0.55
       bodyRotStiffness: 0.1
       neckStiffness: 0.2
-      rotateChestByHands: 1
-      chestClampWeight: 0.5
-      headClampWeight: 0.6
       moveBodyBackWhenCrouching: 0.5
-      maintainPelvisPosition: 0.2
       maxRootAngle: 25
       rootHeadingOffset: 0
     leftArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: 0, y: 1, z: 0}
@@ -7104,12 +7248,14 @@ MonoBehaviour:
     rightArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: 0, y: 1, z: 0}
@@ -7124,9 +7270,9 @@ MonoBehaviour:
     leftLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -7141,9 +7287,9 @@ MonoBehaviour:
     rightLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -7156,7 +7302,23 @@ MonoBehaviour:
         m_RotationOrder: 4
       useAnimatedBendNormal: 0
     locomotion:
+      mode: 0
       weight: 1
+      moveThreshold: 0.3
+      animationHeader: 0
+      minAnimationSpeed: 0.2
+      maxAnimationSpeed: 3
+      animationSmoothTime: 0.1
+      rootPositionHeader: 0
+      standOffset: {x: 0, y: 0}
+      rootLerpSpeedWhileMoving: 30
+      rootLerpSpeedWhileStopping: 10
+      rootLerpSpeedWhileTurning: 10
+      maxRootOffset: 0.5
+      rootRotationHeader: 0
+      maxRootAngleMoving: 10
+      maxRootAngleStanding: 90
+      stepLengthMlp: 1
       footDistance: 0.3
       stepThreshold: 0.4
       angleThreshold: 60
@@ -8022,7 +8184,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -22.800049, y: 18.299988}
+  m_AnchoredPosition: {x: -22.800034, y: 18.299988}
   m_SizeDelta: {x: -496.09772, y: -240.86307}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &937114394
@@ -9049,33 +9211,38 @@ MonoBehaviour:
     spine:
       bones: []
       headTarget: {fileID: 0}
-      pelvisTarget: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
+      headClampWeight: 0.6
+      minHeadHeight: 0.8
+      useAnimatedHeadHeightWeight: 0
+      useAnimatedHeadHeightRange: 0.1
+      animatedHeadHeightBlend: 0.3
+      pelvisTarget: {fileID: 0}
       pelvisPositionWeight: 0
       pelvisRotationWeight: 0
+      maintainPelvisPosition: 0.2
       chestGoal: {fileID: 0}
       chestGoalWeight: 0
-      minHeadHeight: 0.8
+      chestClampWeight: 0.5
+      rotateChestByHands: 1
       bodyPosStiffness: 0.55
       bodyRotStiffness: 0.1
       neckStiffness: 0.2
-      rotateChestByHands: 1
-      chestClampWeight: 0.5
-      headClampWeight: 0.6
       moveBodyBackWhenCrouching: 0.5
-      maintainPelvisPosition: 0.2
       maxRootAngle: 25
       rootHeadingOffset: 0
     leftArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: 0, y: 1, z: 0}
@@ -9090,12 +9257,14 @@ MonoBehaviour:
     rightArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: 0, y: 1, z: 0}
@@ -9110,9 +9279,9 @@ MonoBehaviour:
     leftLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -9127,9 +9296,9 @@ MonoBehaviour:
     rightLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -9142,7 +9311,23 @@ MonoBehaviour:
         m_RotationOrder: 4
       useAnimatedBendNormal: 0
     locomotion:
+      mode: 0
       weight: 1
+      moveThreshold: 0.3
+      animationHeader: 0
+      minAnimationSpeed: 0.2
+      maxAnimationSpeed: 3
+      animationSmoothTime: 0.1
+      rootPositionHeader: 0
+      standOffset: {x: 0, y: 0}
+      rootLerpSpeedWhileMoving: 30
+      rootLerpSpeedWhileStopping: 10
+      rootLerpSpeedWhileTurning: 10
+      maxRootOffset: 0.5
+      rootRotationHeader: 0
+      maxRootAngleMoving: 10
+      maxRootAngleStanding: 90
+      stepLengthMlp: 1
       footDistance: 0.3
       stepThreshold: 0.4
       angleThreshold: 60
@@ -9636,33 +9821,38 @@ MonoBehaviour:
     spine:
       bones: []
       headTarget: {fileID: 0}
-      pelvisTarget: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
+      headClampWeight: 0.6
+      minHeadHeight: 0.8
+      useAnimatedHeadHeightWeight: 0
+      useAnimatedHeadHeightRange: 0.1
+      animatedHeadHeightBlend: 0.3
+      pelvisTarget: {fileID: 0}
       pelvisPositionWeight: 0
       pelvisRotationWeight: 0
+      maintainPelvisPosition: 0.2
       chestGoal: {fileID: 0}
       chestGoalWeight: 0
-      minHeadHeight: 0.8
+      chestClampWeight: 0.5
+      rotateChestByHands: 1
       bodyPosStiffness: 0.55
       bodyRotStiffness: 0.1
       neckStiffness: 0.2
-      rotateChestByHands: 1
-      chestClampWeight: 0.5
-      headClampWeight: 0.6
       moveBodyBackWhenCrouching: 0.5
-      maintainPelvisPosition: 0.2
       maxRootAngle: 25
       rootHeadingOffset: 0
     leftArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: 0, y: 1, z: 0}
@@ -9677,12 +9867,14 @@ MonoBehaviour:
     rightArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: 0, y: 1, z: 0}
@@ -9697,9 +9889,9 @@ MonoBehaviour:
     leftLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -9714,9 +9906,9 @@ MonoBehaviour:
     rightLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -9729,7 +9921,23 @@ MonoBehaviour:
         m_RotationOrder: 4
       useAnimatedBendNormal: 0
     locomotion:
+      mode: 0
       weight: 1
+      moveThreshold: 0.3
+      animationHeader: 0
+      minAnimationSpeed: 0.2
+      maxAnimationSpeed: 3
+      animationSmoothTime: 0.1
+      rootPositionHeader: 0
+      standOffset: {x: 0, y: 0}
+      rootLerpSpeedWhileMoving: 30
+      rootLerpSpeedWhileStopping: 10
+      rootLerpSpeedWhileTurning: 10
+      maxRootOffset: 0.5
+      rootRotationHeader: 0
+      maxRootAngleMoving: 10
+      maxRootAngleStanding: 90
+      stepLengthMlp: 1
       footDistance: 0.3
       stepThreshold: 0.4
       angleThreshold: 60
@@ -10547,33 +10755,38 @@ MonoBehaviour:
     spine:
       bones: []
       headTarget: {fileID: 0}
-      pelvisTarget: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
+      headClampWeight: 0.6
+      minHeadHeight: 0.8
+      useAnimatedHeadHeightWeight: 0
+      useAnimatedHeadHeightRange: 0.1
+      animatedHeadHeightBlend: 0.3
+      pelvisTarget: {fileID: 0}
       pelvisPositionWeight: 0
       pelvisRotationWeight: 0
+      maintainPelvisPosition: 0.2
       chestGoal: {fileID: 0}
       chestGoalWeight: 0
-      minHeadHeight: 0.8
+      chestClampWeight: 0.5
+      rotateChestByHands: 1
       bodyPosStiffness: 0.55
       bodyRotStiffness: 0.1
       neckStiffness: 0.2
-      rotateChestByHands: 1
-      chestClampWeight: 0.5
-      headClampWeight: 0.6
       moveBodyBackWhenCrouching: 0.5
-      maintainPelvisPosition: 0.2
       maxRootAngle: 25
       rootHeadingOffset: 0
     leftArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: 0, y: 1, z: 0}
@@ -10588,12 +10801,14 @@ MonoBehaviour:
     rightArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: 0, y: 1, z: 0}
@@ -10608,9 +10823,9 @@ MonoBehaviour:
     leftLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -10625,9 +10840,9 @@ MonoBehaviour:
     rightLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -10640,7 +10855,23 @@ MonoBehaviour:
         m_RotationOrder: 4
       useAnimatedBendNormal: 0
     locomotion:
+      mode: 0
       weight: 1
+      moveThreshold: 0.3
+      animationHeader: 0
+      minAnimationSpeed: 0.2
+      maxAnimationSpeed: 3
+      animationSmoothTime: 0.1
+      rootPositionHeader: 0
+      standOffset: {x: 0, y: 0}
+      rootLerpSpeedWhileMoving: 30
+      rootLerpSpeedWhileStopping: 10
+      rootLerpSpeedWhileTurning: 10
+      maxRootOffset: 0.5
+      rootRotationHeader: 0
+      maxRootAngleMoving: 10
+      maxRootAngleStanding: 90
+      stepLengthMlp: 1
       footDistance: 0.3
       stepThreshold: 0.4
       angleThreshold: 60
@@ -10768,7 +10999,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -22.800049, y: 18.299988}
+  m_AnchoredPosition: {x: -22.800034, y: 18.299988}
   m_SizeDelta: {x: -496.09772, y: -240.86307}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1246758519
@@ -11154,33 +11385,38 @@ MonoBehaviour:
     spine:
       bones: []
       headTarget: {fileID: 0}
-      pelvisTarget: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
+      headClampWeight: 0.6
+      minHeadHeight: 0.8
+      useAnimatedHeadHeightWeight: 0
+      useAnimatedHeadHeightRange: 0.1
+      animatedHeadHeightBlend: 0.3
+      pelvisTarget: {fileID: 0}
       pelvisPositionWeight: 0
       pelvisRotationWeight: 0
+      maintainPelvisPosition: 0.2
       chestGoal: {fileID: 0}
       chestGoalWeight: 0
-      minHeadHeight: 0.8
+      chestClampWeight: 0.5
+      rotateChestByHands: 1
       bodyPosStiffness: 0.55
       bodyRotStiffness: 0.1
       neckStiffness: 0.2
-      rotateChestByHands: 1
-      chestClampWeight: 0.5
-      headClampWeight: 0.6
       moveBodyBackWhenCrouching: 0.5
-      maintainPelvisPosition: 0.2
       maxRootAngle: 25
       rootHeadingOffset: 0
     leftArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: -1, y: -0, z: -0}
@@ -11195,12 +11431,14 @@ MonoBehaviour:
     rightArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: -1, y: -0, z: -0}
@@ -11215,9 +11453,9 @@ MonoBehaviour:
     leftLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -11232,9 +11470,9 @@ MonoBehaviour:
     rightLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -11247,7 +11485,23 @@ MonoBehaviour:
         m_RotationOrder: 4
       useAnimatedBendNormal: 0
     locomotion:
+      mode: 0
       weight: 1
+      moveThreshold: 0.3
+      animationHeader: 0
+      minAnimationSpeed: 0.2
+      maxAnimationSpeed: 3
+      animationSmoothTime: 0.1
+      rootPositionHeader: 0
+      standOffset: {x: 0, y: 0}
+      rootLerpSpeedWhileMoving: 30
+      rootLerpSpeedWhileStopping: 10
+      rootLerpSpeedWhileTurning: 10
+      maxRootOffset: 0.5
+      rootRotationHeader: 0
+      maxRootAngleMoving: 10
+      maxRootAngleStanding: 90
+      stepLengthMlp: 1
       footDistance: 0.3
       stepThreshold: 0.4
       angleThreshold: 60
@@ -11783,33 +12037,38 @@ MonoBehaviour:
     spine:
       bones: []
       headTarget: {fileID: 0}
-      pelvisTarget: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
+      headClampWeight: 0.6
+      minHeadHeight: 0.8
+      useAnimatedHeadHeightWeight: 0
+      useAnimatedHeadHeightRange: 0.1
+      animatedHeadHeightBlend: 0.3
+      pelvisTarget: {fileID: 0}
       pelvisPositionWeight: 0
       pelvisRotationWeight: 0
+      maintainPelvisPosition: 0.2
       chestGoal: {fileID: 0}
       chestGoalWeight: 0
-      minHeadHeight: 0.8
+      chestClampWeight: 0.5
+      rotateChestByHands: 1
       bodyPosStiffness: 0.55
       bodyRotStiffness: 0.1
       neckStiffness: 0.2
-      rotateChestByHands: 1
-      chestClampWeight: 0.5
-      headClampWeight: 0.6
       moveBodyBackWhenCrouching: 0.5
-      maintainPelvisPosition: 0.2
       maxRootAngle: 25
       rootHeadingOffset: 0
     leftArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: 0, y: 1, z: 0}
@@ -11824,12 +12083,14 @@ MonoBehaviour:
     rightArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: 0, y: 1, z: 0}
@@ -11844,9 +12105,9 @@ MonoBehaviour:
     leftLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -11861,9 +12122,9 @@ MonoBehaviour:
     rightLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -11876,7 +12137,23 @@ MonoBehaviour:
         m_RotationOrder: 4
       useAnimatedBendNormal: 0
     locomotion:
+      mode: 0
       weight: 1
+      moveThreshold: 0.3
+      animationHeader: 0
+      minAnimationSpeed: 0.2
+      maxAnimationSpeed: 3
+      animationSmoothTime: 0.1
+      rootPositionHeader: 0
+      standOffset: {x: 0, y: 0}
+      rootLerpSpeedWhileMoving: 30
+      rootLerpSpeedWhileStopping: 10
+      rootLerpSpeedWhileTurning: 10
+      maxRootOffset: 0.5
+      rootRotationHeader: 0
+      maxRootAngleMoving: 10
+      maxRootAngleStanding: 90
+      stepLengthMlp: 1
       footDistance: 0.3
       stepThreshold: 0.4
       angleThreshold: 60
@@ -12288,33 +12565,38 @@ MonoBehaviour:
     spine:
       bones: []
       headTarget: {fileID: 0}
-      pelvisTarget: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
+      headClampWeight: 0.6
+      minHeadHeight: 0.8
+      useAnimatedHeadHeightWeight: 0
+      useAnimatedHeadHeightRange: 0.1
+      animatedHeadHeightBlend: 0.3
+      pelvisTarget: {fileID: 0}
       pelvisPositionWeight: 0
       pelvisRotationWeight: 0
+      maintainPelvisPosition: 0.2
       chestGoal: {fileID: 0}
       chestGoalWeight: 0
-      minHeadHeight: 0.8
+      chestClampWeight: 0.5
+      rotateChestByHands: 1
       bodyPosStiffness: 0.55
       bodyRotStiffness: 0.1
       neckStiffness: 0.2
-      rotateChestByHands: 1
-      chestClampWeight: 0.5
-      headClampWeight: 0.6
       moveBodyBackWhenCrouching: 0.5
-      maintainPelvisPosition: 0.2
       maxRootAngle: 25
       rootHeadingOffset: 0
     leftArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: -1, y: -0, z: -0}
@@ -12329,12 +12611,14 @@ MonoBehaviour:
     rightArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: -1, y: -0, z: -0}
@@ -12349,9 +12633,9 @@ MonoBehaviour:
     leftLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -12366,9 +12650,9 @@ MonoBehaviour:
     rightLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -12381,7 +12665,23 @@ MonoBehaviour:
         m_RotationOrder: 4
       useAnimatedBendNormal: 0
     locomotion:
+      mode: 0
       weight: 1
+      moveThreshold: 0.3
+      animationHeader: 0
+      minAnimationSpeed: 0.2
+      maxAnimationSpeed: 3
+      animationSmoothTime: 0.1
+      rootPositionHeader: 0
+      standOffset: {x: 0, y: 0}
+      rootLerpSpeedWhileMoving: 30
+      rootLerpSpeedWhileStopping: 10
+      rootLerpSpeedWhileTurning: 10
+      maxRootOffset: 0.5
+      rootRotationHeader: 0
+      maxRootAngleMoving: 10
+      maxRootAngleStanding: 90
+      stepLengthMlp: 1
       footDistance: 0.3
       stepThreshold: 0.4
       angleThreshold: 60
@@ -13013,33 +13313,38 @@ MonoBehaviour:
     spine:
       bones: []
       headTarget: {fileID: 0}
-      pelvisTarget: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
+      headClampWeight: 0.6
+      minHeadHeight: 0.8
+      useAnimatedHeadHeightWeight: 0
+      useAnimatedHeadHeightRange: 0.1
+      animatedHeadHeightBlend: 0.3
+      pelvisTarget: {fileID: 0}
       pelvisPositionWeight: 0
       pelvisRotationWeight: 0
+      maintainPelvisPosition: 0.2
       chestGoal: {fileID: 0}
       chestGoalWeight: 0
-      minHeadHeight: 0.8
+      chestClampWeight: 0.5
+      rotateChestByHands: 1
       bodyPosStiffness: 0.55
       bodyRotStiffness: 0.1
       neckStiffness: 0.2
-      rotateChestByHands: 1
-      chestClampWeight: 0.5
-      headClampWeight: 0.6
       moveBodyBackWhenCrouching: 0.5
-      maintainPelvisPosition: 0.2
       maxRootAngle: 25
       rootHeadingOffset: 0
     leftArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: 0, y: 1, z: 0}
@@ -13054,12 +13359,14 @@ MonoBehaviour:
     rightArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: 0, y: 1, z: 0}
@@ -13074,9 +13381,9 @@ MonoBehaviour:
     leftLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -13091,9 +13398,9 @@ MonoBehaviour:
     rightLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -13106,7 +13413,23 @@ MonoBehaviour:
         m_RotationOrder: 4
       useAnimatedBendNormal: 0
     locomotion:
+      mode: 0
       weight: 1
+      moveThreshold: 0.3
+      animationHeader: 0
+      minAnimationSpeed: 0.2
+      maxAnimationSpeed: 3
+      animationSmoothTime: 0.1
+      rootPositionHeader: 0
+      standOffset: {x: 0, y: 0}
+      rootLerpSpeedWhileMoving: 30
+      rootLerpSpeedWhileStopping: 10
+      rootLerpSpeedWhileTurning: 10
+      maxRootOffset: 0.5
+      rootRotationHeader: 0
+      maxRootAngleMoving: 10
+      maxRootAngleStanding: 90
+      stepLengthMlp: 1
       footDistance: 0.3
       stepThreshold: 0.4
       angleThreshold: 60
@@ -14347,33 +14670,38 @@ MonoBehaviour:
     spine:
       bones: []
       headTarget: {fileID: 0}
-      pelvisTarget: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
+      headClampWeight: 0.6
+      minHeadHeight: 0.8
+      useAnimatedHeadHeightWeight: 0
+      useAnimatedHeadHeightRange: 0.1
+      animatedHeadHeightBlend: 0.3
+      pelvisTarget: {fileID: 0}
       pelvisPositionWeight: 0
       pelvisRotationWeight: 0
+      maintainPelvisPosition: 0.2
       chestGoal: {fileID: 0}
       chestGoalWeight: 0
-      minHeadHeight: 0.8
+      chestClampWeight: 0.5
+      rotateChestByHands: 1
       bodyPosStiffness: 0.55
       bodyRotStiffness: 0.1
       neckStiffness: 0.2
-      rotateChestByHands: 1
-      chestClampWeight: 0.5
-      headClampWeight: 0.6
       moveBodyBackWhenCrouching: 0.5
-      maintainPelvisPosition: 0.2
       maxRootAngle: 25
       rootHeadingOffset: 0
     leftArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: -1, y: -0, z: -0}
@@ -14388,12 +14716,14 @@ MonoBehaviour:
     rightArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: -1, y: -0, z: -0}
@@ -14408,9 +14738,9 @@ MonoBehaviour:
     leftLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -14425,9 +14755,9 @@ MonoBehaviour:
     rightLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -14440,7 +14770,23 @@ MonoBehaviour:
         m_RotationOrder: 4
       useAnimatedBendNormal: 0
     locomotion:
+      mode: 0
       weight: 1
+      moveThreshold: 0.3
+      animationHeader: 0
+      minAnimationSpeed: 0.2
+      maxAnimationSpeed: 3
+      animationSmoothTime: 0.1
+      rootPositionHeader: 0
+      standOffset: {x: 0, y: 0}
+      rootLerpSpeedWhileMoving: 30
+      rootLerpSpeedWhileStopping: 10
+      rootLerpSpeedWhileTurning: 10
+      maxRootOffset: 0.5
+      rootRotationHeader: 0
+      maxRootAngleMoving: 10
+      maxRootAngleStanding: 90
+      stepLengthMlp: 1
       footDistance: 0.3
       stepThreshold: 0.4
       angleThreshold: 60
@@ -15205,33 +15551,38 @@ MonoBehaviour:
     spine:
       bones: []
       headTarget: {fileID: 0}
-      pelvisTarget: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
+      headClampWeight: 0.6
+      minHeadHeight: 0.8
+      useAnimatedHeadHeightWeight: 0
+      useAnimatedHeadHeightRange: 0.1
+      animatedHeadHeightBlend: 0.3
+      pelvisTarget: {fileID: 0}
       pelvisPositionWeight: 0
       pelvisRotationWeight: 0
+      maintainPelvisPosition: 0.2
       chestGoal: {fileID: 0}
       chestGoalWeight: 0
-      minHeadHeight: 0.8
+      chestClampWeight: 0.5
+      rotateChestByHands: 1
       bodyPosStiffness: 0.55
       bodyRotStiffness: 0.1
       neckStiffness: 0.2
-      rotateChestByHands: 1
-      chestClampWeight: 0.5
-      headClampWeight: 0.6
       moveBodyBackWhenCrouching: 0.5
-      maintainPelvisPosition: 0.2
       maxRootAngle: 25
       rootHeadingOffset: 0
     leftArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: -1, y: -0, z: -0}
@@ -15246,12 +15597,14 @@ MonoBehaviour:
     rightArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: -1, y: -0, z: -0}
@@ -15266,9 +15619,9 @@ MonoBehaviour:
     leftLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -15283,9 +15636,9 @@ MonoBehaviour:
     rightLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -15298,7 +15651,23 @@ MonoBehaviour:
         m_RotationOrder: 4
       useAnimatedBendNormal: 0
     locomotion:
+      mode: 0
       weight: 1
+      moveThreshold: 0.3
+      animationHeader: 0
+      minAnimationSpeed: 0.2
+      maxAnimationSpeed: 3
+      animationSmoothTime: 0.1
+      rootPositionHeader: 0
+      standOffset: {x: 0, y: 0}
+      rootLerpSpeedWhileMoving: 30
+      rootLerpSpeedWhileStopping: 10
+      rootLerpSpeedWhileTurning: 10
+      maxRootOffset: 0.5
+      rootRotationHeader: 0
+      maxRootAngleMoving: 10
+      maxRootAngleStanding: 90
+      stepLengthMlp: 1
       footDistance: 0.3
       stepThreshold: 0.4
       angleThreshold: 60
@@ -15651,33 +16020,38 @@ MonoBehaviour:
     spine:
       bones: []
       headTarget: {fileID: 0}
-      pelvisTarget: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
+      headClampWeight: 0.6
+      minHeadHeight: 0.8
+      useAnimatedHeadHeightWeight: 0
+      useAnimatedHeadHeightRange: 0.1
+      animatedHeadHeightBlend: 0.3
+      pelvisTarget: {fileID: 0}
       pelvisPositionWeight: 0
       pelvisRotationWeight: 0
+      maintainPelvisPosition: 0.2
       chestGoal: {fileID: 0}
       chestGoalWeight: 0
-      minHeadHeight: 0.8
+      chestClampWeight: 0.5
+      rotateChestByHands: 1
       bodyPosStiffness: 0.55
       bodyRotStiffness: 0.1
       neckStiffness: 0.2
-      rotateChestByHands: 1
-      chestClampWeight: 0.5
-      headClampWeight: 0.6
       moveBodyBackWhenCrouching: 0.5
-      maintainPelvisPosition: 0.2
       maxRootAngle: 25
       rootHeadingOffset: 0
     leftArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: -1, y: -0, z: -0}
@@ -15692,12 +16066,14 @@ MonoBehaviour:
     rightArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: -1, y: -0, z: -0}
@@ -15712,9 +16088,9 @@ MonoBehaviour:
     leftLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -15729,9 +16105,9 @@ MonoBehaviour:
     rightLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -15744,7 +16120,23 @@ MonoBehaviour:
         m_RotationOrder: 4
       useAnimatedBendNormal: 0
     locomotion:
+      mode: 0
       weight: 1
+      moveThreshold: 0.3
+      animationHeader: 0
+      minAnimationSpeed: 0.2
+      maxAnimationSpeed: 3
+      animationSmoothTime: 0.1
+      rootPositionHeader: 0
+      standOffset: {x: 0, y: 0}
+      rootLerpSpeedWhileMoving: 30
+      rootLerpSpeedWhileStopping: 10
+      rootLerpSpeedWhileTurning: 10
+      maxRootOffset: 0.5
+      rootRotationHeader: 0
+      maxRootAngleMoving: 10
+      maxRootAngleStanding: 90
+      stepLengthMlp: 1
       footDistance: 0.3
       stepThreshold: 0.4
       angleThreshold: 60
@@ -16401,33 +16793,38 @@ MonoBehaviour:
     spine:
       bones: []
       headTarget: {fileID: 0}
-      pelvisTarget: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
+      headClampWeight: 0.6
+      minHeadHeight: 0.8
+      useAnimatedHeadHeightWeight: 0
+      useAnimatedHeadHeightRange: 0.1
+      animatedHeadHeightBlend: 0.3
+      pelvisTarget: {fileID: 0}
       pelvisPositionWeight: 0
       pelvisRotationWeight: 0
+      maintainPelvisPosition: 0.2
       chestGoal: {fileID: 0}
       chestGoalWeight: 0
-      minHeadHeight: 0.8
+      chestClampWeight: 0.5
+      rotateChestByHands: 1
       bodyPosStiffness: 0.55
       bodyRotStiffness: 0.1
       neckStiffness: 0.2
-      rotateChestByHands: 1
-      chestClampWeight: 0.5
-      headClampWeight: 0.6
       moveBodyBackWhenCrouching: 0.5
-      maintainPelvisPosition: 0.2
       maxRootAngle: 25
       rootHeadingOffset: 0
     leftArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: -1, y: -0, z: -0}
@@ -16442,12 +16839,14 @@ MonoBehaviour:
     rightArm:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 1
       rotationWeight: 1
-      shoulderRotationMode: 0
       shoulderRotationWeight: 1
+      shoulderRotationMode: 0
       shoulderTwistWeight: 1
+      shoulderYawOffset: 45
+      shoulderPitchOffset: -30
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       wristToPalmAxis: {x: -1, y: -0, z: -0}
@@ -16462,9 +16861,9 @@ MonoBehaviour:
     leftLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -16479,9 +16878,9 @@ MonoBehaviour:
     rightLeg:
       bones: []
       target: {fileID: 0}
-      bendGoal: {fileID: 0}
       positionWeight: 0
       rotationWeight: 0
+      bendGoal: {fileID: 0}
       bendGoalWeight: 0
       swivelOffset: 0
       bendToTargetWeight: 0.5
@@ -16494,7 +16893,23 @@ MonoBehaviour:
         m_RotationOrder: 4
       useAnimatedBendNormal: 0
     locomotion:
+      mode: 0
       weight: 1
+      moveThreshold: 0.3
+      animationHeader: 0
+      minAnimationSpeed: 0.2
+      maxAnimationSpeed: 3
+      animationSmoothTime: 0.1
+      rootPositionHeader: 0
+      standOffset: {x: 0, y: 0}
+      rootLerpSpeedWhileMoving: 30
+      rootLerpSpeedWhileStopping: 10
+      rootLerpSpeedWhileTurning: 10
+      maxRootOffset: 0.5
+      rootRotationHeader: 0
+      maxRootAngleMoving: 10
+      maxRootAngleStanding: 90
+      stepLengthMlp: 1
       footDistance: 0.3
       stepThreshold: 0.4
       angleThreshold: 60
