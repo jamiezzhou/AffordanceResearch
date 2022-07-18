@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 using System.IO;
 
 //things to add:
@@ -39,21 +40,15 @@ public class TrialController : MonoBehaviour
     private int totalCnt = 6;
 
     //variables for controlling controller
-    private InputDevice targetDevice;
+    public XRNode inputSource;
+    private Vector2 inputAxis;
+    private InputDevice device;
 
     // Start is called before the first frame update
     void Start()
     {
         //change to start game after clicking primary button
         StartCoroutine(WaitNextTrial(10f, startMenuUI));
-
-        //import all the controllers
-        List<InputDevice> devices = new List<InputDevice>();
-        InputDeviceCharacteristics rightControllerCharacteristics = InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller;
-        InputDevices.GetDevicesWithCharacteristics(rightControllerCharacteristics, devices);
-        if (devices.Count > 0) {
-            targetDevice = devices[0];
-        }
 
         //set the condition and heights
         varDanger = Random.Range(0,2);
@@ -68,6 +63,9 @@ public class TrialController : MonoBehaviour
         count = 0;
         SetCountText();
         endExpText.SetActive(false);
+
+        //import all the controllers
+        //character = GetComponent<CharacterController>();
 
 
         //initiate recording devices
@@ -89,6 +87,10 @@ public class TrialController : MonoBehaviour
             nextTrialStart = false;
             File.AppendAllText(fileName, count + "     " + record[record.Count - 1] + "       " + transform.position.ToString() + "\n");
         }
+
+        //import all the controllers
+        device = InputDevices.GetDeviceAtXRNode(inputSource);
+
     }
 
     void SetCountText()
@@ -153,12 +155,12 @@ public class TrialController : MonoBehaviour
         }
 
         AffordanceType.SetActive(true);
-        if (targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue) && primaryButtonValue)
+        if (device.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue) && triggerValue > 0)
         {
             Debug.Log("PrimaryButton pressed");
             AffordanceType.SetActive(false);
             AffordanceLimit.SetActive(true);
-            if (targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool secondaryButtonValue) && secondaryButtonValue)
+            if (device.TryGetFeatureValue(CommonUsages.grip, out float grip) && grip > 0)
             {
                 Debug.Log("SecondaryButton pressed");
                 AffordanceLimit.SetActive(false);
