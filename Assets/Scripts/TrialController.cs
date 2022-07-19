@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
+using Valve.VR;
 using System.IO;
 
 //things to add:
@@ -40,9 +41,9 @@ public class TrialController : MonoBehaviour
     private int totalCnt = 6;
 
     //variables for controlling controller
-    public XRNode inputSource;
-    private Vector2 inputAxis;
-    private InputDevice device;
+    //public XRNode inputSource;
+    //private Vector2 inputAxis;
+    //private InputDevice device;
 
     // Start is called before the first frame update
     void Start()
@@ -89,7 +90,20 @@ public class TrialController : MonoBehaviour
         }
 
         //import all the controllers
-        device = InputDevices.GetDeviceAtXRNode(inputSource);
+        //device = InputDevices.GetDeviceAtXRNode(inputSource);
+        AffordanceType.SetActive(true);
+        if (Input.GetKeyDown(KeyCode.C) || SteamVR.Actions._default.GrabPinch.GetStateDown(SteamVR_Input_Sources.Any))
+        {
+            Debug.Log("PrimaryButton pressed");
+            AffordanceType.SetActive(false);
+            //AffordanceLimit.SetActive(true);
+            //if (device.TryGetFeatureValue(CommonUsages.grip, out float grip) && grip > 0)
+            //{
+            // Debug.Log("SecondaryButton pressed");
+            // AffordanceLimit.SetActive(false);
+            //}
+        }
+
 
     }
 
@@ -151,21 +165,21 @@ public class TrialController : MonoBehaviour
         SetCountText();
         if (count != 0 && count != totalCnt+1)
         {
-            StartCoroutine(WaitNextTrialPause(2f));
+            StartCoroutine(WaitNextTrial(2f, pauseMenuUI));
         }
 
-        AffordanceType.SetActive(true);
-        if (device.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue) && triggerValue > 0)
-        {
+        //AffordanceType.SetActive(true);
+        //if (Input.GetKeyDown(KeyCode.C) || SteamVR.Actions._default.GrabPinch.GetStateDown(SteamVR_Input_Sources.Any))
+        //{
             Debug.Log("PrimaryButton pressed");
             AffordanceType.SetActive(false);
-            AffordanceLimit.SetActive(true);
-            if (device.TryGetFeatureValue(CommonUsages.grip, out float grip) && grip > 0)
-            {
-                Debug.Log("SecondaryButton pressed");
-                AffordanceLimit.SetActive(false);
-            }
-        }
+            //AffordanceLimit.SetActive(true);
+            //if (device.TryGetFeatureValue(CommonUsages.grip, out float grip) && grip > 0)
+            //{
+               // Debug.Log("SecondaryButton pressed");
+               // AffordanceLimit.SetActive(false);
+            //}
+        //}
 
     }
 
