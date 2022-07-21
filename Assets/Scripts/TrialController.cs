@@ -60,8 +60,8 @@ public class TrialController : MonoBehaviour
         calculateHeights();
 
         //begin the first trial walking towards startPos2
-        endPos = "startPos1";
-        nextTrial();
+        endPos = "startPos2";
+        //nextTrial();
 
 
         //initiate recording devices
@@ -88,14 +88,13 @@ public class TrialController : MonoBehaviour
             || (startMenuUI.activeSelf && !startSet && SteamVR_Actions._default.GrabGrip.GetStateDown(SteamVR_Input_Sources.Any)))
         {
            startSet = true;
-           startMenuUI.SetActive(false);
+            StartCoroutine(WaitStartTrial(2f));
+            Debug.Log("Start");
+            //startMenuUI.SetActive(false);
         }
 
         ////initiate first trial when the start menu has been set and is now nonactive
         //if (startSet && !startMenuUI.activeSelf) {
-        //    nextTrial();
-        //    //so that the first trial is only calle once
-        //    startSet = false;
         //}
 
         //when the pause menu disappears, initiate affordance type menu
@@ -174,6 +173,16 @@ public class TrialController : MonoBehaviour
         //    limitSet = true;
         //    AffordanceLimit.SetActive(false);
         //}
+    }
+
+    //pause for 2 seconds before starting the first trial
+    public IEnumerator WaitStartTrial(float t)
+    {
+        yield return new WaitForSeconds(t);
+        startMenuUI.SetActive(false);
+        //so that the first trial is only calle once
+        startSet = false;
+        nextTrial();
     }
 
     void SetCountText()
