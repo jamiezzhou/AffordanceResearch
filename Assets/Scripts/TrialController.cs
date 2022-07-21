@@ -2,25 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-//using UnityEngine.XR;
-//using UnityEngine.XR.Interaction.Toolkit;
 using Valve.VR;
 using System.IO;
 
 //things to add:
-//a message noticing next trial (2s)
-//a black screen for a few seconds between each trial (2s)
-//A menu page to enter the experiment
-//a better randomizer and counterbalance
 //create log file
 
 public class TrialController : MonoBehaviour
 {
-    //public GameObject nextTrialText;
-    //private bool startNextTrial = false;
-
     //recording variables
     private string fileName;
+    bool questType;
+    bool questLimit;
 
     public int varDanger;
 
@@ -29,44 +22,46 @@ public class TrialController : MonoBehaviour
 
     public TextMeshProUGUI countText;
     public GameObject endExpText;
+
     public GameObject pauseMenuUI;
     public GameObject halfWayUI;
     public GameObject AffordanceType;
     public GameObject AffordanceLimit;
     public GameObject startMenuUI;
 
+    //variables for trigger events
+    bool typeSet = false;
+    bool limitSet = false;
+    bool startSet = false;
+    bool pauseSet = false;
+
     private string endPos;
 
     public int count;
     private int totalCnt = 6;
 
-    //variables for controlling controller
-    //public XRNode inputSource;
-    //private Vector2 inputAxis;
-    //private InputDevice device;
-
     // Start is called before the first frame update
     void Start()
     {
         //change to start game after clicking primary button
-        StartCoroutine(WaitNextTrial(10f, startMenuUI));
+        //StartCoroutine(WaitNextTrial(10f, startMenuUI));
+        //initiate menus and text
+        count = 0;
+        SetCountText();
+        startMenuUI.SetActive(true);
+        pauseMenuUI.SetActive(false);
+        AffordanceType.SetActive(false);
+        AffordanceLimit.SetActive(false);
+        halfWayUI.SetActive(false);
+        endExpText.SetActive(false);
 
         //set the condition and heights
         varDanger = Random.Range(0,2);
         calculateHeights();
 
         //begin the first trial walking towards startPos2
-        endPos = "startPos2";
+        endPos = "startPos1";
         nextTrial();
-
-        //initiate menus and text
-        pauseMenuUI.SetActive(false);
-        count = 0;
-        SetCountText();
-        endExpText.SetActive(false);
-
-        //import all the controllers
-        //character = GetComponent<CharacterController>();
 
 
         //initiate recording devices
@@ -80,7 +75,6 @@ public class TrialController : MonoBehaviour
     {
         //recording the position according to time
         //Debug.Log(trialNum);
-       
         if (transform.position.x < 0.01f && transform.position.x > -0.01f && nextTrialStart)
         {
             //Debug.Log("print");
@@ -89,45 +83,104 @@ public class TrialController : MonoBehaviour
             File.AppendAllText(fileName, count + "     " + record[record.Count - 1] + "       " + transform.position.ToString() + "\n");
         }
 
-        //import all the controllers
-        //device = InputDevices.GetDeviceAtXRNode(inputSource);
-
-        //type is false at the very begining fo the experiment, do not allow pressing at this time. Create a bool value that is set true each trial begins.
-        
-        if (Input.GetKeyDown(KeyCode.C) || (AffordanceType.activeSelf && SteamVR_Actions._default.GrabGrip.GetStateDown(SteamVR_Input_Sources.Any)))
+        //only trigger the close of the menu if the menu is active, it has not been set before, and the trigger is pressed
+        if (startMenuUI.activeSelf && !startSet && Input.GetKeyDown(KeyCode.B)
+            || (startMenuUI.activeSelf && !startSet && SteamVR_Actions._default.GrabGrip.GetStateDown(SteamVR_Input_Sources.Any)))
         {
-            Debug.Log("Grip pressed");
-            AffordanceType.SetActive(false);
-            //AffordanceLimit.SetActive(true);
-            //if (device.TryGetFeatureValue(CommonUsages.grip, out float grip) && grip > 0)
-            //{
-            // Debug.Log("SecondaryButton pressed");
-            // AffordanceLimit.SetActive(false);
-            //}
+           startSet = true;
+           startMenuUI.SetActive(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.D) || (AffordanceType.activeSelf && SteamVR_Actions._default.GrabPinch.GetStateDown(SteamVR_Input_Sources.Any)))
+        ////initiate first trial when the start menu has been set and is now nonactive
+        //if (startSet && !startMenuUI.activeSelf) {
+        //    nextTrial();
+        //    //so that the first trial is only calle once
+        //    startSet = false;
+        //}
+
+        //when the pause menu disappears, initiate affordance type menu
+        if (pauseSet)
         {
-            Debug.Log("Trigger pressed");
-            AffordanceLimit.SetActive(false);
+            AffordanceType.SetActive(true);
         }
 
+        //when the affordance type menu dissappears, initiate affordance limit menu
+        if (typeSet)
+        {
+            AffordanceLimit.SetActive(true);
+        }
 
+        if(AffordanceType.activeSelf && !typeSet)
+        {
+            if (SteamVR_Actions._default.GrabGrip.GetStateDown(SteamVR_Input_Sources.Any) || Input.GetKeyDown(KeyCode.Y))
+            {
+                //record result
+                Debug.Log("Trigger pressed");
+                questType = true;
+
+                pauseSet = false;
+                typeSet = true;
+                AffordanceType.SetActive(false);
+            }
+            else if (SteamVR_Actions._default.GrabPinch.GetStateDown(SteamVR_Input_Sources.Any) || Input.GetKeyDown(KeyCode.N)) {
+                //record result
+                Debug.Log("Grip pressed");
+                questType = false;
+
+                pauseSet = false;
+                typeSet = true;
+                AffordanceType.SetActive(false);
+            }
+
+        }
+
+        if (AffordanceLimit.activeSelf && !limitSet) {
+            if (SteamVR_Actions._default.GrabGrip.GetStateDown(SteamVR_Input_Sources.Any) || Input.GetKeyDown(KeyCode.Y))
+            {
+                //record result
+                Debug.Log("Trigger pressed");
+                questLimit = true;
+
+                typeSet = false;
+                limitSet = true;
+                AffordanceLimit.SetActive(false);
+            }
+            else if (SteamVR_Actions._default.GrabPinch.GetStateDown(SteamVR_Input_Sources.Any) || Input.GetKeyDown(KeyCode.N))
+            {
+                //record result
+                Debug.Log("Grip pressed");
+                questLimit = true;
+
+                typeSet = false;
+                limitSet = true;
+                AffordanceLimit.SetActive(false);
+            }
+        }
+
+        //if (AffordanceType.activeSelf && !typeSet && Input.GetKeyDown(KeyCode.N)
+        //    || (AffordanceType.activeSelf && !typeSet && SteamVR_Actions._default.GrabGrip.GetStateDown(SteamVR_Input_Sources.Any)))
+        //{
+        //    pauseSet = false;
+        //    Debug.Log("Grip pressed");
+        //    typeSet = true;
+        //    AffordanceType.SetActive(false);
+        //}
+
+        //if (AffordanceLimit.activeSelf && !limitSet && Input.GetKeyDown(KeyCode.M)
+        //    || (AffordanceLimit.activeSelf && !limitSet && SteamVR_Actions._default.GrabPinch.GetStateDown(SteamVR_Input_Sources.Any)))
+        //{
+        //    typeSet = false;
+        //    Debug.Log("Trigger pressed");
+        //    limitSet = true;
+        //    AffordanceLimit.SetActive(false);
+        //}
     }
 
     void SetCountText()
     {
-        if (count == (totalCnt + 1)/2) {
-            varDanger = Mathf.Abs(varDanger - 1);
-            //recount and record
-            record.Clear();
-            //display half way panel
-            StartCoroutine(WaitNextTrial(8f, halfWayUI));
-        }
-
         if (count > totalCnt)
         {
-            //pauseMenuUI.SetActive(false);
+            pauseMenuUI.SetActive(false);
             endExpText.SetActive(true);
             Time.timeScale = 0f;
             //end game and terminate
@@ -142,6 +195,10 @@ public class TrialController : MonoBehaviour
     private bool nextTrialStart = false;
     void nextTrial() {
         //generate random position of obstacle, make sure each position is only generated once
+        //set all menus to false, change set menus to true after each set
+        typeSet = false;
+        limitSet = false;
+        pauseSet = false;
 
         int varType = Random.Range(0, 3);
         int varHeight = Random.Range(0, 7);
@@ -160,55 +217,44 @@ public class TrialController : MonoBehaviour
 
         //transition between trials
         count++;
-        //SetCountText();
-        //StartCoroutine(WaitNextTrial(2f, pauseMenuUI));
         UIController();
-        //update trial number on UI
 
         nextTrialStart = true;
     }
 
+    //controll the appearing 
     private void UIController() {
 
         SetCountText();
-        if (count != 0 && count != totalCnt+1)
+
+        //initiate pause menu UI
+        if (count == (totalCnt / 2) + 1)
+        {
+            varDanger = Mathf.Abs(varDanger - 1);
+            //recount and record
+            record.Clear();
+            //display half way panel
+            StartCoroutine(WaitNextTrial(8f, halfWayUI));
+        }
+        //do not display pause menu for first trial
+        else if (count == 1)
+        {
+            pauseSet = true;
+        }
+        //do not display pause menu after all trials end
+        else if (count < totalCnt + 1)
         {
             StartCoroutine(WaitNextTrial(2f, pauseMenuUI));
         }
-
-        AffordanceType.SetActive(true);
-        //if (Input.GetKeyDown(KeyCode.C) || SteamVR.Actions._default.GrabPinch.GetStateDown(SteamVR_Input_Sources.Any))
-        //{
-        //Debug.Log("PrimaryButton pressed");
-        //AffordanceType.SetActive(false);
-        //AffordanceLimit.SetActive(true);
-        if (!AffordanceType.activeSelf) {
-            AffordanceLimit.SetActive(true);
-        }
-        //if (Input.GetKeyDown(KeyCode.C) || SteamVR.Actions._default.GrabPinch.GetStateDown(SteamVR_Input_Sources.Any))
-        //{
-        // Debug.Log("SecondaryButton pressed");
-        // AffordanceLimit.SetActive(false);
-        //}
-        //}
-
     }
 
-    //temp code!!! obsolete when trigger is manufunctured
-    public IEnumerator WaitNextTrialPause(float t)
+    //set the pause menu
+    public IEnumerator WaitNextTrial(float t, GameObject uiPanel)
     {
-        pauseMenuUI.SetActive(true);
+        uiPanel.SetActive(true);
         yield return new WaitForSeconds(t);
-        pauseMenuUI.SetActive(false);
-        StartCoroutine(WaitNextTrialType(3f));
-    }
-    public IEnumerator WaitNextTrialType(float t)
-    {
-        AffordanceType.SetActive(true);
-        yield return new WaitForSeconds(t);
-        AffordanceType.SetActive(false);
-        StartCoroutine(WaitNextTrial(3f, AffordanceLimit));
-
+        uiPanel.SetActive(false);
+        pauseSet = true;
     }
 
     //set position of obstacle
@@ -262,14 +308,6 @@ public class TrialController : MonoBehaviour
         }
     }
 
-    //pause menu for 2 seconds
-    public IEnumerator WaitNextTrial(float t, GameObject uiPanel)
-    {
-        uiPanel.SetActive(true);
-        yield return new WaitForSeconds(t);
-        uiPanel.SetActive(false);
-    }
-
     //input eyeHeight of participant before experimentation
     public float eyeHeight = 1.5f;
     public float offset = 0.15f;
@@ -315,17 +353,19 @@ public class TrialController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (endPos == "startPos1" && other.tag == "startPos1")
+        if (limitSet && endPos == "startPos1" && other.tag == "startPos1")
         {
             //Debug.Log("startPos1");
             endPos = "startPos2";
+            limitSet = false;
             nextTrial();
         }
 
-        if (endPos == "startPos2" && other.tag == "startPos2")
+        if (limitSet && endPos == "startPos2" && other.tag == "startPos2")
         {
             //Debug.Log("startPos2");
             endPos = "startPos1";
+            limitSet = false;
             nextTrial();
         }
     }

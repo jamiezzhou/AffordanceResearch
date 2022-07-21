@@ -12,19 +12,19 @@ public class player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            _direction = Vector3.forward;
+            _direction = Vector3.forward * 3;
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            _direction = Vector3.back;
+            _direction = Vector3.back * 3;
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            transform.Rotate(0, 1, 0);
+            transform.Rotate(0, 2, 0);
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            transform.Rotate(0, -1, 0);
+            transform.Rotate(0, -2, 0);
         }
         else{
             _direction = Vector3.zero;
