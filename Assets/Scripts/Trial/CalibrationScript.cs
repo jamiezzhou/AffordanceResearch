@@ -30,7 +30,8 @@ public class CalibrationScript : MonoBehaviour
     bool pauseSet = false;
     bool updateStopper = false;
 
-    string endPos;
+    public string endPos = "startPos2";
+
     public int count;
     private int totalCnt = 4;
 
@@ -51,7 +52,7 @@ public class CalibrationScript : MonoBehaviour
         dangerousObs.SetActive(false);
 
         varHeight = 0;
-        endPos = "startPos1";
+        //endPos = "startPos1";
 
         //set the condition and heights
         if (varDanger == 1)
@@ -87,16 +88,16 @@ public class CalibrationScript : MonoBehaviour
             //{
             //    updateStopper = true;
             if (Input.GetKey(KeyCode.P)
-            || SteamVR_Actions._default.GrabPinch.GetStateDown(SteamVR_Input_Sources.Any))
+            || SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.Any))
             {
                 //translates upwards for low trials
                 if (count % 2 == 1)
                 {
-                    obstacle.transform.position = obstacle.transform.position + new Vector3(0, 0.02f, 0);
+                    obstacle.transform.position = obstacle.transform.position + new Vector3(0, 0.005f, 0);
                 }
                 else
                 {
-                    obstacle.transform.position = obstacle.transform.position + new Vector3(0, -0.02f, 0);
+                    obstacle.transform.position = obstacle.transform.position + new Vector3(0, -0.005f, 0);
                 }
             }
             //else

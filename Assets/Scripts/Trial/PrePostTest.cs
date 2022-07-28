@@ -78,16 +78,16 @@ public class PrePostTest : MonoBehaviour
         if (startSet && pauseSet && !confirmSet && !confirmUI.activeSelf)
         {
             if (Input.GetKey(KeyCode.P)
-            || SteamVR_Actions._default.GrabPinch.GetStateDown(SteamVR_Input_Sources.Any))
+            || SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.Any))
             {
                 //translates upwards for low trials
                 if (varHeight == 0)
                 {
-                    obstacle.transform.position = obstacle.transform.position + new Vector3(0, 0.02f, 0);
+                    obstacle.transform.position = obstacle.transform.position + new Vector3(0, 0.005f, 0);
                 }
                 else
                 {
-                    obstacle.transform.position = obstacle.transform.position + new Vector3(0, -0.02f, 0);
+                    obstacle.transform.position = obstacle.transform.position + new Vector3(0, -0.005f, 0);
                 }
             }
 
