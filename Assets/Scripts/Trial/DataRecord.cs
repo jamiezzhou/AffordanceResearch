@@ -6,12 +6,13 @@ using System.IO;
 public class DataRecord : MonoBehaviour
 {
     public string participantName = "Default";
-    public string prepostTrial = "Pre";
+    //public string prepostTrial = "Pre";
     private string reportDirectoryName = "Data_Logs";
     private string reportFileName;
     private string reportSeparator = ",";
-    private string[] reportHeaders = new string[4] {
+    private string[] reportHeaders = new string[5] {
         "Trial Number",
+        "Experiment Part",
         "Obstacle Type",
         "Obstacle Height",
         "Affordance Height"
@@ -22,7 +23,7 @@ public class DataRecord : MonoBehaviour
 
     public void AppendToReport(string[] strings)
     {
-        reportFileName = participantName + "_" + prepostTrial + ".csv";
+        reportFileName = participantName +".csv";
         VerifyDirectory();
         VerifyFile();
         using (StreamWriter sw = File.AppendText(GetFilePath()))

@@ -10,9 +10,14 @@ public class PrePostTest : MonoBehaviour
     DataRecord logScript;
 
     public int varDanger = 1;//0 is nondangerous, 1 is dangerous
+    public int experimentPart = 1; //0 Pretest, 1 calibration, 2 posttest
+
     private GameObject obstacle;
     public GameObject dangerousObs;
     public GameObject nondangerousObs;
+    private float obstacleOriginX;
+    private float obstacleOriginY;
+    private float obstacleOriginZ;
 
     public TextMeshProUGUI countText;
     public GameObject endExpText;
@@ -66,12 +71,15 @@ public class PrePostTest : MonoBehaviour
     void Update()
     {
         //only trigger the close of the menu if the menu is active, it has not been set before, and the trigger is pressed
-        if (startMenuUI.activeSelf && !startSet && Input.GetKeyDown(KeyCode.G)
-            || (startMenuUI.activeSelf && !startSet && SteamVR_Actions._default.GrabGrip.GetStateDown(SteamVR_Input_Sources.Any)))
+        if (RotateWithUser.initialized && startMenuUI.activeSelf && !startSet && Input.GetKeyDown(KeyCode.G)
+            || (RotateWithUser.initialized && startMenuUI.activeSelf && !startSet && SteamVR_Actions._default.GrabGrip.GetStateDown(SteamVR_Input_Sources.Any)))
         {
             startSet = true;
             StartCoroutine(WaitStartTrial(2f));
             Debug.Log("Start");
+            obstacleOriginX = obstacle.transform.position.x;
+            obstacleOriginY = obstacle.transform.position.y;
+            obstacleOriginZ = obstacle.transform.position.z;
         }
 
         //when the pause menu disappears, initiate affordance type menu
@@ -83,11 +91,15 @@ public class PrePostTest : MonoBehaviour
                 //translates upwards for low trials
                 if (varHeight == 0)
                 {
-                    obstacle.transform.position = obstacle.transform.position + new Vector3(0, 0.005f, 0);
+                    if(obstacle.transform.position.y <= experimentHeights[1]){
+                        obstacle.transform.position = obstacle.transform.position + new Vector3(0, 0.005f, 0);
+                    }
                 }
                 else
                 {
-                    obstacle.transform.position = obstacle.transform.position + new Vector3(0, -0.005f, 0);
+                    if (obstacle.transform.position.y >= experimentHeights[0]){
+                        obstacle.transform.position = obstacle.transform.position + new Vector3(0, -0.005f, 0);
+                    }
                 }
             }
 
@@ -142,8 +154,9 @@ public class PrePostTest : MonoBehaviour
 
                     //record reading
 
-                    string[] log = new string[4] {
+                    string[] log = new string[5] {
                         count.ToString(),
+                        experimentPart.ToString(),
                         varDanger.ToString(),
                         varHeight.ToString(),
                         obstacle.transform.position.y.ToString()
@@ -253,7 +266,7 @@ public class PrePostTest : MonoBehaviour
     private void setPosition(int varHeight)
     {
         obstacle.SetActive(true);
-        obstacle.transform.position = new Vector3(0, experimentHeights[varHeight], 0);
+        obstacle.transform.position = new Vector3(obstacleOriginX, obstacleOriginY + experimentHeights[varHeight], obstacleOriginZ);
     }
 
     //input eyeHeight of participant before experimentation

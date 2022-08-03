@@ -11,6 +11,8 @@ public class RotateWithUser : MonoBehaviour
     private Quaternion headQ, environmentQ;
     private bool updateStopper;
 
+    public static bool initialized = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,11 +41,14 @@ public class RotateWithUser : MonoBehaviour
                 headQ.x = 0;
                 headQ.z = 0;
                 headQ *= environmentQ;
+                headQ.y = 90 + headQ.y;
                 enviromentReference.transform.rotation = headQ;
                 headV -= enviromentReference.transform.forward * (enviromentReference.transform.position.z);
                 headV.y += enviromentReference.transform.position.y;
                 enviromentReference.transform.position = headV;
+                enviromentReference.transform.rotation *= new Quaternion(0,-90,0,0);
                 updateStopper = true;
+                initialized = true;
             }
         }
     }

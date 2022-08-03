@@ -10,9 +10,14 @@ public class CalibrationScript : MonoBehaviour
     DataRecord logScript;
 
     public int varDanger = 1;//0 is nondangerous, 1 is dangerous
+    public int experimentPart = 1; //0 Pretest, 1 calibration, 2 posttest
+
     private GameObject obstacle;
     public GameObject dangerousObs;
     public GameObject nondangerousObs;
+    private float obstacleOriginX;
+    private float obstacleOriginY;
+    private float obstacleOriginZ;
 
     public TextMeshProUGUI countText;
     public GameObject endExpText;
@@ -30,7 +35,7 @@ public class CalibrationScript : MonoBehaviour
     bool pauseSet = false;
     bool updateStopper = false;
 
-    public string endPos = "startPos2";
+    public string endPos = "startPos1";
 
     public int count;
     private int totalCnt = 4;
@@ -73,12 +78,15 @@ public class CalibrationScript : MonoBehaviour
     void Update()
     {
         //only trigger the close of the menu if the menu is active, it has not been set before, and the trigger is pressed
-        if (startMenuUI.activeSelf && !startSet && Input.GetKeyDown(KeyCode.G)
-            || (startMenuUI.activeSelf && !startSet && SteamVR_Actions._default.GrabGrip.GetStateDown(SteamVR_Input_Sources.Any)))
+        if (RotateWithUser.initialized && startMenuUI.activeSelf && !startSet && Input.GetKeyDown(KeyCode.G)
+            || (RotateWithUser.initialized && startMenuUI.activeSelf && !startSet && SteamVR_Actions._default.GrabGrip.GetStateDown(SteamVR_Input_Sources.Any)))
         {
             startSet = true;
             StartCoroutine(WaitStartTrial(2f));
             Debug.Log("Start");
+            obstacleOriginX = obstacle.transform.position.x;
+            obstacleOriginY = obstacle.transform.position.y;
+            obstacleOriginZ = obstacle.transform.position.z;
         }
 
         //when the pause menu disappears, initiate affordance type menu
@@ -93,11 +101,15 @@ public class CalibrationScript : MonoBehaviour
                 //translates upwards for low trials
                 if (count % 2 == 1)
                 {
-                    obstacle.transform.position = obstacle.transform.position + new Vector3(0, 0.005f, 0);
+                    if(obstacle.transform.position.y <= experimentHeights[3]){
+                        obstacle.transform.position = obstacle.transform.position + new Vector3(0, 0.005f, 0);
+                    }
                 }
                 else
                 {
-                    obstacle.transform.position = obstacle.transform.position + new Vector3(0, -0.005f, 0);
+                    if (obstacle.transform.position.y >= experimentHeights[0]){
+                        obstacle.transform.position = obstacle.transform.position + new Vector3(0, -0.005f, 0);
+                    }
                 }
             }
             //else
@@ -176,8 +188,9 @@ public class CalibrationScript : MonoBehaviour
 
                     //record reading
 
-                    string[] log = new string[4] {
+                    string[] log = new string[5] {
                         count.ToString(),
+                        experimentPart.ToString(),
                         varDanger.ToString(),
                         varHeight.ToString(),
                         obstacle.transform.position.y.ToString()
@@ -283,7 +296,7 @@ public class CalibrationScript : MonoBehaviour
     private void setPosition(int varHeight)
     {
         obstacle.SetActive(true);
-        obstacle.transform.position = new Vector3(0, experimentHeights[varHeight], 0);
+        obstacle.transform.position = new Vector3(obstacleOriginX, obstacleOriginY + experimentHeights[varHeight], obstacleOriginZ);
     }
 
     //input eyeHeight of participant before experimentation
