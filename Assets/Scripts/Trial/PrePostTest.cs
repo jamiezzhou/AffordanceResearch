@@ -43,6 +43,10 @@ public class PrePostTest : MonoBehaviour
     void Start()
     {
         //initiate menus and text
+        varDanger = InfoLog.obstacleType;//0 is nondangerous, 1 is dangerous
+        avatar = InfoLog.avatar;
+        eyeHeight = InfoLog.eyeHeight;
+
         count = 0;
         SetCountText();
         startMenuUI.SetActive(true);
@@ -189,6 +193,7 @@ public class PrePostTest : MonoBehaviour
     public IEnumerator WaitEnd(float t)
     {
         yield return new WaitForSeconds(t);
+        RotateWithUser.initialized = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
@@ -199,11 +204,11 @@ public class PrePostTest : MonoBehaviour
             pauseMenuUI.SetActive(false);
             startAdjustmentText.SetActive(false);
             endExpText.SetActive(true);
-            Time.timeScale = 0f;
             if(experimentPart == 0)
             {
                 StartCoroutine(WaitEnd(2f));
             }
+            //Time.timeScale = 0f;
             //end game and terminate
         }
         else

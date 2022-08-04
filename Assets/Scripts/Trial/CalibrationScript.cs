@@ -46,6 +46,10 @@ public class CalibrationScript : MonoBehaviour
     void Start()
     {
         //initiate menus and text
+        varDanger = InfoLog.obstacleType;//0 is nondangerous, 1 is dangerous
+        avatar = InfoLog.avatar;
+        eyeHeight = InfoLog.eyeHeight;
+
         count = 0;
         SetCountText();
         startMenuUI.SetActive(true);
@@ -59,7 +63,7 @@ public class CalibrationScript : MonoBehaviour
         dangerousObs.SetActive(false);
 
         varHeight = 0;
-        //endPos = "startPos1";
+        endPos = "startPos1";
 
         //set the condition and heights
         if (varDanger == 1)
@@ -217,6 +221,7 @@ public class CalibrationScript : MonoBehaviour
     public IEnumerator WaitEnd(float t)
     {
         yield return new WaitForSeconds(t);
+        RotateWithUser.initialized = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
@@ -227,8 +232,8 @@ public class CalibrationScript : MonoBehaviour
             pauseMenuUI.SetActive(false);
             startAdjustmentText.SetActive(false);
             endExpText.SetActive(true);
-            Time.timeScale = 0f;
             StartCoroutine(WaitEnd(2f));
+            //Time.timeScale = 0f;
             //end game and terminate
         }
         else

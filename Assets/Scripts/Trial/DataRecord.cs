@@ -23,6 +23,7 @@ public class DataRecord : MonoBehaviour
 
     public void AppendToReport(string[] strings)
     {
+        participantName = InfoLog.participantName;
         reportFileName = participantName +".csv";
         VerifyDirectory();
         VerifyFile();
