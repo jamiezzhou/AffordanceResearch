@@ -85,23 +85,38 @@ public class PrePostTest : MonoBehaviour
         //when the pause menu disappears, initiate affordance type menu
         if (startSet && pauseSet && !confirmSet && !confirmUI.activeSelf)
         {
-            if (Input.GetKey(KeyCode.P)
-            || SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.Any))
+            if (Input.GetKey(KeyCode.U)
+            || SteamVR_Actions._default.SnapTurnLeft.GetState(SteamVR_Input_Sources.Any))
             {
-                //translates upwards for low trials
-                if (varHeight == 0)
+                if (obstacle.transform.position.y <= experimentHeights[1])
                 {
-                    if(obstacle.transform.position.y <= experimentHeights[1]){
-                        obstacle.transform.position = obstacle.transform.position + new Vector3(0, 0.005f, 0);
-                    }
+                    obstacle.transform.position = obstacle.transform.position + new Vector3(0, 0.005f, 0);
                 }
-                else
+
+                ////translates upwards for low trials
+                //if (varHeight == 0)
+                //{
+                //    if(obstacle.transform.position.y <= experimentHeights[1]){
+                //        obstacle.transform.position = obstacle.transform.position + new Vector3(0, 0.005f, 0);
+                //    }
+                //}
+                //else
+                //{
+                //    if (obstacle.transform.position.y >= experimentHeights[0]){
+                //        obstacle.transform.position = obstacle.transform.position + new Vector3(0, -0.005f, 0);
+                //    }
+                //}
+            }
+
+            if (Input.GetKey(KeyCode.D)
+                || SteamVR_Actions._default.SnapTurnRight.GetState(SteamVR_Input_Sources.Any))
+            {
+                if (obstacle.transform.position.y >= experimentHeights[0])
                 {
-                    if (obstacle.transform.position.y >= experimentHeights[0]){
-                        obstacle.transform.position = obstacle.transform.position + new Vector3(0, -0.005f, 0);
-                    }
+                    obstacle.transform.position = obstacle.transform.position + new Vector3(0, -0.005f, 0);
                 }
             }
+
 
             if (Input.GetKeyDown(KeyCode.G)
             || SteamVR_Actions._default.GrabGrip.GetStateDown(SteamVR_Input_Sources.Any))
