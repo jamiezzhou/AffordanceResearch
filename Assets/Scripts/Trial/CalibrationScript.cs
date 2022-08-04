@@ -4,13 +4,15 @@ using UnityEngine;
 using TMPro;
 using Valve.VR;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class CalibrationScript : MonoBehaviour
 {
     DataRecord logScript;
 
-    public int varDanger = 1;//0 is nondangerous, 1 is dangerous
+    public int varDanger = InfoLog.obstacleType;//0 is nondangerous, 1 is dangerous
     public int experimentPart = 1; //0 Pretest, 1 calibration, 2 posttest
+    public int avatar = InfoLog.avatar;
 
     private GameObject obstacle;
     public GameObject dangerousObs;
@@ -131,8 +133,6 @@ public class CalibrationScript : MonoBehaviour
                 {
 
                     updateStopper = true;
-                    //record result
-                    //Debug.Log("Confirm pressed");
                     confirmUI.SetActive(true);
                     startAdjustmentText.SetActive(false);
                 }
@@ -154,13 +154,8 @@ public class CalibrationScript : MonoBehaviour
                 Debug.Log(updateStopper + "not confirmed");
                 if (updateStopper == false)
                 {
-                //if (confirmUI.activeSelf && !confirmSet)
-                //    {
-                        //updateStopper = true;
-                        //Debug.Log("Not confirmed");
                         confirmUI.SetActive(false);
                         startAdjustmentText.SetActive(true);
-                    //}
                 }
                 else
                 {
@@ -218,11 +213,12 @@ public class CalibrationScript : MonoBehaviour
         nextTrial();
     }
 
-    ////pause for 0.5 seconds before confirming in confirm window
-    //public IEnumerator WaitConfirm(float t)
-    //{
-    //    yield return new WaitForSeconds(t);
-    //}
+    //pause for 2 seconds before confirming in confirm window
+    public IEnumerator WaitEnd(float t)
+    {
+        yield return new WaitForSeconds(t);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 
     void SetCountText()
     {
@@ -232,6 +228,7 @@ public class CalibrationScript : MonoBehaviour
             startAdjustmentText.SetActive(false);
             endExpText.SetActive(true);
             Time.timeScale = 0f;
+            StartCoroutine(WaitEnd(2f));
             //end game and terminate
         }
         else
@@ -244,7 +241,6 @@ public class CalibrationScript : MonoBehaviour
     void nextTrial()
     {
         startActions.SetActive(false);
-        //generate random position of obstacle, make sure each position is only generated once
         //set all menus to false, change set menus to true after each set
         confirmSet = false;
         pauseSet = false;
@@ -300,7 +296,7 @@ public class CalibrationScript : MonoBehaviour
     }
 
     //input eyeHeight of participant before experimentation
-    public float eyeHeight = 1.5f;
+    public float eyeHeight = InfoLog.eyeHeight;
     public float offset = 0.15f;
 
     private float[] experimentHeights = new float[4];

@@ -5,7 +5,7 @@ using System.IO;
 
 public class DataRecord : MonoBehaviour
 {
-    public string participantName = "Default";
+    public string participantName = InfoLog.participantName;
     //public string prepostTrial = "Pre";
     private string reportDirectoryName = "Data_Logs";
     private string reportFileName;

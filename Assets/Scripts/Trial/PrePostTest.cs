@@ -4,13 +4,15 @@ using UnityEngine;
 using TMPro;
 using Valve.VR;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class PrePostTest : MonoBehaviour
 {
     DataRecord logScript;
 
-    public int varDanger = 1;//0 is nondangerous, 1 is dangerous
+    public int varDanger = InfoLog.obstacleType;//0 is nondangerous, 1 is dangerous
     public int experimentPart = 1; //0 Pretest, 1 calibration, 2 posttest
+    public int avatar = InfoLog.avatar;
 
     private GameObject obstacle;
     public GameObject dangerousObs;
@@ -85,38 +87,23 @@ public class PrePostTest : MonoBehaviour
         //when the pause menu disappears, initiate affordance type menu
         if (startSet && pauseSet && !confirmSet && !confirmUI.activeSelf)
         {
-            if (Input.GetKey(KeyCode.U)
-            || SteamVR_Actions._default.SnapTurnLeft.GetState(SteamVR_Input_Sources.Any))
+            if (Input.GetKey(KeyCode.P)
+            || SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.Any))
             {
-                if (obstacle.transform.position.y <= experimentHeights[1])
+                //translates upwards for low trials
+                if (varHeight == 0)
                 {
-                    obstacle.transform.position = obstacle.transform.position + new Vector3(0, 0.005f, 0);
+                    if(obstacle.transform.position.y <= experimentHeights[1]){
+                        obstacle.transform.position = obstacle.transform.position + new Vector3(0, 0.005f, 0);
+                    }
                 }
-
-                ////translates upwards for low trials
-                //if (varHeight == 0)
-                //{
-                //    if(obstacle.transform.position.y <= experimentHeights[1]){
-                //        obstacle.transform.position = obstacle.transform.position + new Vector3(0, 0.005f, 0);
-                //    }
-                //}
-                //else
-                //{
-                //    if (obstacle.transform.position.y >= experimentHeights[0]){
-                //        obstacle.transform.position = obstacle.transform.position + new Vector3(0, -0.005f, 0);
-                //    }
-                //}
-            }
-
-            if (Input.GetKey(KeyCode.D)
-                || SteamVR_Actions._default.SnapTurnRight.GetState(SteamVR_Input_Sources.Any))
-            {
-                if (obstacle.transform.position.y >= experimentHeights[0])
+                else
                 {
-                    obstacle.transform.position = obstacle.transform.position + new Vector3(0, -0.005f, 0);
+                    if (obstacle.transform.position.y >= experimentHeights[0]){
+                        obstacle.transform.position = obstacle.transform.position + new Vector3(0, -0.005f, 0);
+                    }
                 }
             }
-
 
             if (Input.GetKeyDown(KeyCode.G)
             || SteamVR_Actions._default.GrabGrip.GetStateDown(SteamVR_Input_Sources.Any))
@@ -199,9 +186,10 @@ public class PrePostTest : MonoBehaviour
     }
 
     //pause for 0.5 seconds before confirming in confirm window
-    public IEnumerator WaitConfirm(float t)
+    public IEnumerator WaitEnd(float t)
     {
         yield return new WaitForSeconds(t);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     void SetCountText()
@@ -212,6 +200,10 @@ public class PrePostTest : MonoBehaviour
             startAdjustmentText.SetActive(false);
             endExpText.SetActive(true);
             Time.timeScale = 0f;
+            if(experimentPart == 0)
+            {
+                StartCoroutine(WaitEnd(2f));
+            }
             //end game and terminate
         }
         else
@@ -231,13 +223,13 @@ public class PrePostTest : MonoBehaviour
 
         if (count == 0)
         {
-            varHeight = Random.Range(0, 2);
-            Debug.Log("Start" + varHeight);
+            varHeight = 0;
+            //varHeight = Random.Range(0, 2);
         }
         else
         {
-            varHeight = Mathf.Abs(varHeight - 1);
-            Debug.Log("End" + varHeight);
+            varHeight = 1;
+            //varHeight = Mathf.Abs(varHeight - 1);
         }
 
         //set the position for the trial
@@ -285,7 +277,7 @@ public class PrePostTest : MonoBehaviour
     }
 
     //input eyeHeight of participant before experimentation
-    public float eyeHeight = 1.5f;
+    public float eyeHeight = InfoLog.eyeHeight;
     public float offset = 0.15f;
 
     private float[] experimentHeights = new float[2];
