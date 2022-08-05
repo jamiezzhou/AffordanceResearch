@@ -194,9 +194,10 @@ public class CalibrationScript : MonoBehaviour
 
                     //record reading
 
-                    string[] log = new string[5] {
+                    string[] log = new string[6] {
                         count.ToString(),
                         experimentPart.ToString(),
+                        avatar.ToString(),
                         varDanger.ToString(),
                         varHeight.ToString(),
                         obstacle.transform.position.y.ToString()

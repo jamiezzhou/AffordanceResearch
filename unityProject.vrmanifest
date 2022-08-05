@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.affordance1.0.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "F:\\Jamie\\AffordanceResearch\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "E:\\Jamie\\AffordanceResearch\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "Affordance1.0 [Testing]"

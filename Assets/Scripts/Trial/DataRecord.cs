@@ -10,9 +10,10 @@ public class DataRecord : MonoBehaviour
     private string reportDirectoryName = "Data_Logs";
     private string reportFileName;
     private string reportSeparator = ",";
-    private string[] reportHeaders = new string[5] {
+    private string[] reportHeaders = new string[6] {
         "Trial Number",
         "Experiment Part",
+        "Avatar",
         "Obstacle Type",
         "Obstacle Height",
         "Affordance Height"

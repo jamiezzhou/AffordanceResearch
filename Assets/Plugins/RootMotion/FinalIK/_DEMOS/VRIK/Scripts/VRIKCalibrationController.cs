@@ -48,7 +48,7 @@ namespace RootMotion.Demos
 
         void LateUpdate()
         {
-            if (Input.GetKeyDown(KeyCode.C) || SteamVR_Actions._default.GrabPinch.GetStateDown(SteamVR_Input_Sources.Any)) // This is for SteamVR Interaction system
+            if (Input.GetKeyDown(KeyCode.C)) // This is for SteamVR Interaction system
             //if (Input.GetKeyDown(KeyCode.C) || Controller_Activated == true) // This is for Unity's XR Interaction System
             {
                 if (count == 0)

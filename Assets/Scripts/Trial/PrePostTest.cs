@@ -166,11 +166,12 @@ public class PrePostTest : MonoBehaviour
 
                     //record reading
 
-                    string[] log = new string[5] {
-                        (count+1).ToString(),
+                    string[] log = new string[6] {
+                        (count).ToString(),
                         experimentPart.ToString(),
+                        avatar.ToString(),
                         varDanger.ToString(),
-                        varHeight.ToString(),
+                        (varHeight+1).ToString(),
                         obstacle.transform.position.y.ToString()
                     };
                     logScript.AppendToReport(log);
