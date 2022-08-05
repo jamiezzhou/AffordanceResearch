@@ -100,11 +100,17 @@ public class PrePostTest : MonoBehaviour
                     if(obstacle.transform.position.y <= experimentHeights[1]){
                         obstacle.transform.position = obstacle.transform.position + new Vector3(0, 0.005f, 0);
                     }
+                    else{
+                        obstacle.transform.position = new Vector3(obstacleOriginX, obstacleOriginY + experimentHeights[0], obstacleOriginZ);
+                    }
                 }
                 else
                 {
                     if (obstacle.transform.position.y >= experimentHeights[0]){
                         obstacle.transform.position = obstacle.transform.position + new Vector3(0, -0.005f, 0);
+                    }
+                    else{
+                        obstacle.transform.position = new Vector3(obstacleOriginX, obstacleOriginY + experimentHeights[1], obstacleOriginZ);
                     }
                 }
             }
@@ -161,7 +167,7 @@ public class PrePostTest : MonoBehaviour
                     //record reading
 
                     string[] log = new string[5] {
-                        count.ToString(),
+                        (count+1).ToString(),
                         experimentPart.ToString(),
                         varDanger.ToString(),
                         varHeight.ToString(),

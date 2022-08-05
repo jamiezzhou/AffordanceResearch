@@ -110,11 +110,18 @@ public class CalibrationScript : MonoBehaviour
                     if(obstacle.transform.position.y <= experimentHeights[3]){
                         obstacle.transform.position = obstacle.transform.position + new Vector3(0, 0.005f, 0);
                     }
+                    else{
+                        obstacle.transform.position = new Vector3(obstacleOriginX, obstacleOriginY + experimentHeights[0], obstacleOriginZ);
+                    }
                 }
+                
                 else
                 {
                     if (obstacle.transform.position.y >= experimentHeights[0]){
                         obstacle.transform.position = obstacle.transform.position + new Vector3(0, -0.005f, 0);
+                    }
+                    else{
+                        obstacle.transform.position = new Vector3(obstacleOriginX, obstacleOriginY + experimentHeights[1], obstacleOriginZ);
                     }
                 }
             }
