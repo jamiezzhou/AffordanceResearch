@@ -6,8 +6,8 @@ public class InfoLog : MonoBehaviour
 {
     public static int obstacleType = 1;
     public static int avatar = 1;
-    public static float eyeHeight = 1.5f;
-    public static string participantName = "Paul";
+    public static float eyeHeight = 1.43f;
+    public static string participantName = "Carolyn";
 
     public GameObject childAvatar;
     void Start() {
