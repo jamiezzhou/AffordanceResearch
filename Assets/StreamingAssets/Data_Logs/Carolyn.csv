@@ -1,4 +1,4 @@
-Trial Number,Experiment Part,Avatar,Obstacle Type,Obstacle Height,Affordance Height,time stamp,Eye Height
+Trial Number,Experiment Part (0 pretest/1 feedback/2 posttest),Avatar (1 with avatar/ 0 without avatar),Obstacle Type (0 non dangerous/1 dangerous),Obstacle Height ( odd minimum/ even maximum),Affordance Height (meters),time stamp,Eye Height (meters)
 1,0,0,0,1,0.6155198,8/6/2022 14:43,1.43
 2,0,0,0,2,0.5860403,8/6/2022 14:43,
 1,1,0,0,1,0.6255198,8/6/2022 14:44,

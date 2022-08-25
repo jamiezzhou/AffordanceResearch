@@ -12,11 +12,11 @@ public class DataRecord : MonoBehaviour
     private string reportSeparator = ",";
     private string[] reportHeaders = new string[6] {
         "Trial Number",
-        "Experiment Part",
-        "Avatar",
-        "Obstacle Type",
-        "Obstacle Height",
-        "Affordance Height"
+        "Experiment Part (0 Pretest/1 Feeback/ 2 Posttest)",
+        "Avatar (0 Avatar/ 1 No avatar)",
+        "Obstacle Type (0 Non dangerous/ 1 Dangerous)",
+        "Obstacle Height (Odd Min Height/ Even Max Height)",
+        "Affordance Height (Meters)"
     };
     private string timeStampHeader = "time stamp";
 
