@@ -31,8 +31,10 @@ public class RotateWithUser : MonoBehaviour
         // Take the starting point of the whole experiment, and put the participant back to that point every time
         // The teleportation issue (solve it later)
         */
-        if (SteamVR_Actions._default.GrabPinch.GetStateDown(SteamVR_Input_Sources.Any))
+        if (Input.GetKeyDown(KeyCode.P)
+        || SteamVR_Actions._default.GrabPinch.GetStateDown(SteamVR_Input_Sources.Any))
         {
+            Debug.Log("Initialized");
             if (updateStopper == false)
             {
                 headV = headReference.transform.position;

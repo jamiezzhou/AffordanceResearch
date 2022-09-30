@@ -11,8 +11,14 @@ public class CalibrationScript : MonoBehaviour
     DataRecord logScript;
 
     public int varDanger = InfoLog.obstacleType;//0 is nondangerous, 1 is dangerous
-    public int experimentPart = 1; //0 Pretest, 1 calibration, 2 posttest
-    public int avatar = InfoLog.avatar;
+    public int experimentPart = 1; //Block 0
+    public int experimentPhase = 0; //0 adjustment phase, 1 feedback phase
+    public int varHeight;
+    public int judgeYN = -1;
+    public float eyeHeight = InfoLog.eyeHeight;
+    // public int varDanger = InfoLog.obstacleType;//0 is nondangerous, 1 is dangerous
+    // public int experimentPart = 1; //0 Pretest, 1 calibration, 2 posttest
+    // public int avatar = InfoLog.avatar;
 
     private GameObject obstacle;
     public GameObject dangerousObs;
@@ -47,7 +53,7 @@ public class CalibrationScript : MonoBehaviour
     {
         //initiate menus and text
         varDanger = InfoLog.obstacleType;//0 is nondangerous, 1 is dangerous
-        avatar = InfoLog.avatar;
+        //avatar = InfoLog.avatar;
         eyeHeight = InfoLog.eyeHeight;
 
         count = 0;
@@ -153,7 +159,12 @@ public class CalibrationScript : MonoBehaviour
                 }
                 Debug.Log(updateStopper + "confirm menu");
             }
-            //}
+
+            //manually remove the obstacle when the participant asks
+            if(Input.GetKeyDown(KeyCode.A)){
+                Debug.Log("remove obstacle");
+                obstacle.SetActive(false);
+            }
 
         }
 
@@ -194,13 +205,14 @@ public class CalibrationScript : MonoBehaviour
 
                     //record reading
 
-                    string[] log = new string[6] {
+                    string[] log = new string[7] {
                         count.ToString(),
                         experimentPart.ToString(),
-                        avatar.ToString(),
-                        varDanger.ToString(),
+                        experimentPhase.ToString(),
                         varHeight.ToString(),
-                        obstacle.transform.position.y.ToString()
+                        varDanger.ToString(),
+                        judgeYN.ToString(),
+                        (-1).ToString()
                     };
                     logScript.AppendToReport(log);
                 //}
@@ -250,10 +262,10 @@ public class CalibrationScript : MonoBehaviour
         }
     }
 
-    int varHeight;
     void nextTrial()
     {
         startActions.SetActive(false);
+        obstacle.SetActive(true);
         //set all menus to false, change set menus to true after each set
         confirmSet = false;
         pauseSet = false;
@@ -261,8 +273,14 @@ public class CalibrationScript : MonoBehaviour
 
         //set the position for the trial
         Debug.Log(varHeight);
-        if (varHeight < 4)
+        if (count <= totalCnt)
         {
+            if(count%2 == 1){
+                varHeight = Random.Range(0, 2);
+            }
+            else{
+                varHeight = Mathf.Abs(varHeight - 1);
+            }
             setPosition(varHeight);
         }
 
@@ -305,12 +323,13 @@ public class CalibrationScript : MonoBehaviour
     private void setPosition(int varHeight)
     {
         obstacle.SetActive(true);
-        obstacle.transform.position = new Vector3(obstacleOriginX, obstacleOriginY + experimentHeights[varHeight], obstacleOriginZ);
+        if(experimentPart == 1){
+             obstacle.transform.position = new Vector3(obstacleOriginX, obstacleOriginY + experimentHeights[varHeight], obstacleOriginZ);
+        }
     }
 
     //input eyeHeight of participant before experimentation
-    public float eyeHeight = InfoLog.eyeHeight;
-    public float offset = 0.15f;
+    //public float offset = 0.15f;
 
     private float[] experimentHeights = new float[4];
 
@@ -320,9 +339,13 @@ public class CalibrationScript : MonoBehaviour
 
         //the lower boundery
         experimentHeights[0] = stepOverThreshold * 0.7f;
-        experimentHeights[1] = stepOverThreshold * 1.4f;
-        experimentHeights[2] = stepOverThreshold * 0.7f;
-        experimentHeights[3] = stepOverThreshold * 1.4f;
+        experimentHeights[1] = stepOverThreshold * 1.3f;
+        experimentHeights[2] = stepOverThreshold * 0.8f;
+        experimentHeights[3] = stepOverThreshold * 1.2f;
+        experimentHeights[4] = stepOverThreshold * 0.9f;
+        experimentHeights[5] = stepOverThreshold * 1.1f;
+        experimentHeights[6] = stepOverThreshold * 0.95f;
+        experimentHeights[7] = stepOverThreshold * 1.05f;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -10,13 +10,14 @@ public class DataRecord : MonoBehaviour
     private string reportDirectoryName = "Data_Logs";
     private string reportFileName;
     private string reportSeparator = ",";
-    private string[] reportHeaders = new string[6] {
-        "Trial Number",
-        "Experiment Part (0 Pretest/1 Feeback/ 2 Posttest)",
-        "Avatar (0 Avatar/ 1 No avatar)",
-        "Obstacle Type (0 Non dangerous/ 1 Dangerous)",
-        "Obstacle Height (Odd Min Height/ Even Max Height)",
-        "Affordance Height (Meters)"
+    private string[] reportHeaders = new string[7] {
+        "Trial_Num",
+        "exp_block", //Experiment Block (0 block 0 pretest/1 block 1 30%/ 2 block 2 20%/ 3 block 3 10%/ 4 block 4 5%)
+        "exp_phase", //Experiment Phase (0 adjustment phase/ 1 feedback phase)
+        "start_pos", //Start Position(0 start low/ 1 start high)
+        "obs_type", //obstacle type (0 Non dangerous/ 1 Dangerous)",
+        "judge_yn", //affordance judgement (-1 n/a/ 0 no/ 1 yes)
+        "aff_height" //affordance height(-1 n/a, in meters)
     };
     private string timeStampHeader = "time stamp";
 

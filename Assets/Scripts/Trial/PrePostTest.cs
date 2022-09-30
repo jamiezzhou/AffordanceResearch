@@ -11,8 +11,11 @@ public class PrePostTest : MonoBehaviour
     DataRecord logScript;
 
     public int varDanger = InfoLog.obstacleType;//0 is nondangerous, 1 is dangerous
-    public int experimentPart = 1; //0 Pretest, 1 calibration, 2 posttest
-    public int avatar = InfoLog.avatar;
+    public int experimentPart = 0; //Block 0
+    public int experimentPhase = 1; //1 adjustment phase
+    public int varHeight;
+    public int judgeYN = -1;
+    //public int avatar = InfoLog.avatar;
 
     private GameObject obstacle;
     public GameObject dangerousObs;
@@ -44,7 +47,7 @@ public class PrePostTest : MonoBehaviour
     {
         //initiate menus and text
         varDanger = InfoLog.obstacleType;//0 is nondangerous, 1 is dangerous
-        avatar = InfoLog.avatar;
+        //avatar = InfoLog.avatar;
         eyeHeight = InfoLog.eyeHeight;
 
         count = 0;
@@ -77,7 +80,7 @@ public class PrePostTest : MonoBehaviour
     void Update()
     {
         //only trigger the close of the menu if the menu is active, it has not been set before, and the trigger is pressed
-        if (RotateWithUser.initialized && startMenuUI.activeSelf && !startSet && Input.GetKeyDown(KeyCode.G)
+        if (startMenuUI.activeSelf && !startSet && Input.GetKeyDown(KeyCode.G)
             || (RotateWithUser.initialized && startMenuUI.activeSelf && !startSet && SteamVR_Actions._default.GrabGrip.GetStateDown(SteamVR_Input_Sources.Any)))
         {
             startSet = true;
@@ -166,12 +169,13 @@ public class PrePostTest : MonoBehaviour
 
                     //record reading
 
-                    string[] log = new string[6] {
+                    string[] log = new string[7] {
                         (count).ToString(),
                         experimentPart.ToString(),
-                        avatar.ToString(),
+                        experimentPhase.ToString(),
+                        varHeight.ToString(),
                         varDanger.ToString(),
-                        (varHeight+1).ToString(),
+                        judgeYN.ToString(),
                         obstacle.transform.position.y.ToString()
                     };
                     logScript.AppendToReport(log);
@@ -215,8 +219,6 @@ public class PrePostTest : MonoBehaviour
             {
                 StartCoroutine(WaitEnd(2f));
             }
-            //Time.timeScale = 0f;
-            //end game and terminate
         }
         else
         {
@@ -224,7 +226,6 @@ public class PrePostTest : MonoBehaviour
         }
     }
 
-    int varHeight;
     void nextTrial()
     {
         //generate random position of obstacle, make sure each position is only generated once
@@ -235,13 +236,13 @@ public class PrePostTest : MonoBehaviour
 
         if (count == 0)
         {
-            varHeight = 0;
-            //varHeight = Random.Range(0, 2);
+            //varHeight = 0;
+            varHeight = Random.Range(0, 2);
         }
         else
         {
-            varHeight = 1;
-            //varHeight = Mathf.Abs(varHeight - 1);
+            //varHeight = 1;
+            varHeight = Mathf.Abs(varHeight - 1);
         }
 
         //set the position for the trial
@@ -299,18 +300,8 @@ public class PrePostTest : MonoBehaviour
         float stepOverThreshold = eyeHeight * 0.52f;
 
         //the lower boundery
-        experimentHeights[0] = stepOverThreshold * 0.7f;
+        experimentHeights[0] = stepOverThreshold * 0.6f;
         experimentHeights[1] = stepOverThreshold * 1.4f;
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.tag == "startPos1")
-    //    {
-    //        Debug.Log("in bounds");
-    //    }
-    //    else {
-    //        //Debug.Log("out of bounds");
-    //    }
-    //}
 }
