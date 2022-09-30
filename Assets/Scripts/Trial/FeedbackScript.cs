@@ -109,7 +109,7 @@ public class FeedbackScript : MonoBehaviour
         if (startSet && pauseSet && !judgeSet && experimentPhase == 0)
         {
             //affordance judgement (Y Grip/N Pinch)
-            if (Input.GetKey(KeyCode.N)
+            if (Input.GetKey(KeyCode.G)
             || SteamVR_Actions._default.GrabPinch.GetStateDown(SteamVR_Input_Sources.Any))
             {
                 if (updateStopper == false)
@@ -138,7 +138,7 @@ public class FeedbackScript : MonoBehaviour
                     updateStopper = false;
                 }
             }
-            if (Input.GetKey(KeyCode.Y)
+            if (Input.GetKey(KeyCode.P)
             || SteamVR_Actions._default.GrabGrip.GetStateDown(SteamVR_Input_Sources.Any))
             {
                 if (updateStopper == false)
@@ -294,7 +294,7 @@ public class FeedbackScript : MonoBehaviour
         else
         {
             countText.text = "Trial: " + ((count-1)%4+1).ToString() + "/" + (totalCnt/4) 
-            + "\nBlock: " + experimentPart;
+            + "\nBlock: " + experimentPart + "/4";
         }
     }
 
